@@ -1,243 +1,139 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – Shaiane da Silva Neves</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      line-height: 1.6;
+      color: #333;
+      background: #f9fafb;
+    }
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .projets .projet {
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shaiane da Silva Neves</h1>
+    <p>Ingénieure pédagogique en formation</p>
+    <nav>
+      <a href="#profil">Profil</a>
+      <a href="#competences">Compétences</a>
+      <a href="#formations">Formation & Expériences</a>
+      <a href="#projets">Projets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-// Portfolio d'ingénierie pédagogique — composant React prêt à coller dans un projet
-// Prérequis : Tailwind CSS + Framer Motion installés. (Pour Next.js ou Create React App)
+  <section id="profil">
+    <h2>Profil professionnel</h2>
+    <p>
+      Étudiante en deuxième année de master de didactique des langues et ingénierie pédagogique,
+      avec une expérience en enseignement et accompagnement des apprenants universitaires, collégiens et public en général.
+      Spécialisée dans la création de supports pédagogiques interactifs et innovants, notamment dans le domaine de
+      l’apprentissage et l’enseignement des langues en ligne.
+    </p>
+  </section>
 
-const projects = [
-  {
-    id: 1,
-    title: "Parcours blended: Formation en communication",
-    summary:
-      "Conception d'un parcours hybride (e-learning + ateliers présentiels) pour renforcer les compétences en communication interpersonnelle.",
-    tags: ['Blended', 'Storyline', 'Assessment'],
-    link: '#'
-  },
-  {
-    id: 2,
-    title: "Microlearning mobile-first",
-    summary:
-      "Série de capsules mobiles (3-5 minutes) évaluées, optimisées pour l'engagement et l'accessibilité.",
-    tags: ['Microlearning', 'SCORM', 'Accessibilité'],
-    link: '#'
-  },
-  {
-    id: 3,
-    title: "Evaluation adaptative",
-    summary:
-      "Mise en place d'un moteur d'évaluation adaptative pour individualiser les parcours.",
-    tags: ['Adaptive', 'Analytics', 'LMS'],
-    link: '#'
-  }
-]
+  <section id="competences">
+    <h2>Compétences clés</h2>
+    <ul>
+      <li>Conception de ressources pédagogiques en ligne</li>
+      <li>Optimisation de l’expérience utilisateur (UX)</li>
+      <li>Développement de modules interactifs</li>
+      <li>Animation d’ateliers de langues</li>
+      <li>Gestion LMS et outils numériques : Moodle, Canva, H5P, Genially, Articulate 360...</li>
+      <li>Langages : PHP, Javascript, HTML, CSS</li>
+    </ul>
+  </section>
 
-export default function PortfolioIngenieriePedagogique() {
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 antialiased">
-      <header className="bg-white shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-semibold">Ingénierie Pédagogique — Portfolio</h1>
-            <p className="text-sm text-slate-500">Nom Prénom — Ingénieur·e Pédagogique</p>
-          </div>
-          <nav className="flex items-center gap-4">
-            <a href="#projects" className="text-sm hover:underline">Projets</a>
-            <a href="#skills" className="text-sm hover:underline">Compétences</a>
-            <a href="#contact" className="text-sm hover:underline">Contact</a>
-            <a
-              href="/cv.pdf"
-              className="ml-2 inline-block rounded-md border border-slate-200 px-3 py-1 text-sm bg-white hover:bg-slate-50"
-              download
-            >
-              Télécharger le CV
-            </a>
-          </nav>
-        </div>
-      </header>
+  <section id="formations">
+    <h2>Formation & expériences</h2>
+    <h3>Formation</h3>
+    <ul>
+      <li>Master de Didactique des Langues et Ingénierie Pédagogique Numérique (Université Grenoble Alpes, en cours)</li>
+      <li>Master de Lettres – Texte, Discours et Relations Sociales (Université Fédérale de Pelotas, 2020-2023)</li>
+      <li>Licence en Portugais et Français (Université Fédérale de Pelotas, 2015-2018)</li>
+    </ul>
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        {/* HERO */}
-        <section className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl md:text-4xl font-extrabold leading-tight"
-            >
-              Ingénierie pédagogique & design de formation
-            </motion.h2>
-            <p className="mt-4 text-slate-600">
-              Je conçois des parcours hybrides, modules e-learning et évaluations adaptatives
-              centrés sur l'apprenant et mesurables par les données. Mon approche combine
-              pédagogie active, microlearning et bonnes pratiques d'accessibilité.
-            </p>
+    <h3>Expériences sélectionnées</h3>
+    <ul>
+      <li>Stage (2025) – Conception de ressources pédagogiques FLE (Laboratoires ICAR et Lidilem)</li>
+      <li>Assistante de langue portugaise (France Éducation, Guyane Française, 2022-2023)</li>
+      <li>Enseignante de FLE (Université Fédérale du Paraná, Brésil, 2019-2022)</li>
+      <li>Analyste Service Desk (HCL, télétravail, 2023-2024)</li>
+    </ul>
+  </section>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="inline-block rounded-md bg-sky-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-sky-700"
-              >
-                Voir mes projets
-              </a>
-              <a
-                href="#contact"
-                className="inline-block rounded-md border border-slate-200 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
-              >
-                Me contacter
-              </a>
-            </div>
-
-            <dl className="mt-8 grid grid-cols-3 gap-4 text-sm">
-              <div>
-                <dt className="text-slate-500">Années d'expérience</dt>
-                <dd className="font-semibold">6+</dd>
-              </div>
-              <div>
-                <dt className="text-slate-500">Projets livrés</dt>
-                <dd className="font-semibold">25+</dd>
-              </div>
-              <div>
-                <dt className="text-slate-500">LMS / Outils</dt>
-                <dd className="font-semibold">Moodle, Totara, SCORM, xAPI</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div className="order-first md:order-last">
-            <div className="rounded-2xl bg-gradient-to-br from-white to-slate-100 p-6 shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
-                alt="Illustration ingénierie pédagogique"
-                className="w-full rounded-lg object-cover h-64 md:h-80"
-              />
-
-              <div className="mt-4">
-                <h3 className="font-semibold">Exemple : module interactif</h3>
-                <p className="text-sm text-slate-600 mt-1">
-                  Prototype interactif développé avec HTML5/CSS/JS et intégration SCORM.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PROJECTS */}
-        <section id="projects" className="mt-16">
-          <h3 className="text-2xl font-semibold">Projets sélectionnés</h3>
-          <p className="mt-2 text-sm text-slate-600">Sélection de projets pédagogiques — brief & livrables.</p>
-
-          <div className="mt-6 grid md:grid-cols-3 gap-6">
-            {projects.map((p) => (
-              <motion.article
-                key={p.id}
-                whileHover={{ y: -6 }}
-                className="rounded-xl border border-slate-100 bg-white p-4 shadow-sm"
-              >
-                <h4 className="font-semibold">{p.title}</h4>
-                <p className="mt-2 text-sm text-slate-600">{p.summary}</p>
-
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs rounded-full border px-2 py-1 text-slate-600 bg-slate-50"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={p.link}
-                  className="mt-4 inline-block text-sm font-medium text-sky-600 hover:underline"
-                >
-                  En savoir plus →
-                </a>
-              </motion.article>
-            ))}
-          </div>
-        </section>
-
-        {/* SKILLS & PROCESS */}
-        <section id="skills" className="mt-16 grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-xl font-semibold">Compétences clés</h3>
-            <ul className="mt-4 space-y-3 text-slate-600">
-              <li>Conception pédagogique & ingénierie de formation</li>
-              <li>Didactique numérique, microlearning, blended learning</li>
-              <li>Instructional design tools: Articulate Storyline, Rise, adapt.js</li>
-              <li>LMS, xAPI / SCORM, tableaux de bord analytique</li>
-              <li>Accessibilité (WCAG), pédagogie inclusive</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-semibold">Processus & méthode</h3>
-            <ol className="mt-4 space-y-3 text-slate-600 list-decimal list-inside">
-              <li>Analyse des besoins & définition des objectifs (Métriques)</li>
-              <li>Conception (Storyboard, prototypes interactifs)</li>
-              <li>Production & validation (SCORM / xAPI, tests utilisateurs)</li>
-              <li>Déploiement & évaluation (learning analytics)</li>
-            </ol>
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id="contact" className="mt-16">
-          <h3 className="text-xl font-semibold">Contact</h3>
-          <p className="mt-2 text-sm text-slate-600">Discutons de votre projet — proposition, audit pédagogique ou prototype.</p>
-
-          <form
-            className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4"
-            onSubmit={(e) => {
-              e.preventDefault()
-              alert("Formulaire exemple — configurez un backend pour l'envoi réel.")
-            }}
-          >
-            <input
-              aria-label="Nom"
-              placeholder="Nom"
-              required
-              className="rounded-md border border-slate-200 px-3 py-2"
-            />
-            <input
-              aria-label="Email"
-              placeholder="Email"
-              type="email"
-              required
-              className="rounded-md border border-slate-200 px-3 py-2"
-            />
-            <input
-              aria-label="Objet"
-              placeholder="Objet"
-              className="md:col-span-2 rounded-md border border-slate-200 px-3 py-2"
-            />
-            <textarea
-              aria-label="Message"
-              placeholder="Votre message — précisez le contexte, délais, budget..."
-              rows={5}
-              className="md:col-span-2 rounded-md border border-slate-200 px-3 py-2"
-            />
-
-            <button
-              type="submit"
-              className="md:col-span-2 rounded-md bg-sky-600 px-4 py-2 text-sm font-medium text-white hover:bg-sky-700"
-            >
-              Envoyer
-            </button>
-          </form>
-
-          <div className="mt-6 text-sm text-slate-600">
-            <p>Ou mail : <a href="mailto:prenom.nom@example.com" className="text-sky-600">prenom.nom@example.com</a></p>
-          </div>
-        </section>
-
-        <footer className="mt-16 border-t pt-6 text-sm text-slate-500">
-          © {new Date().getFullYear()} Nom Prénom — Ingénierie pédagogique • Accessible, mesurable, centré·e apprenant
-        </footer>
-      </main>
+  <section id="projets" class="projets">
+    <h2>Projets personnels</h2>
+    <p>Voici un espace pour présenter vos projets personnels en ingénierie pédagogique :</p>
+    
+    <!-- Exemple de projet - à dupliquer et modifier -->
+    <div class="projet">
+      <h3>Nom du projet</h3>
+      <p>Description du projet (objectifs, outils utilisés, résultats, etc.).</p>
     </div>
-  )
-}
 
+    <!-- Tu peux ajouter ici d'autres projets -->
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📧 Email : <a href="mailto:shaiane-neves@hotmail.com">shaiane-neves@hotmail.com</a></p>
+    <p>📱 Téléphone : +33 07 44 41 91 39</p>
+  </section>
+
+  <footer>
+    © 2025 – Shaiane da Silva Neves | Portfolio Ingénierie pédagogique
+  </footer>
+</body>
+</html>
