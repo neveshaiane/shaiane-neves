@@ -27,6 +27,23 @@
     .modal-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:0;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:18px;z-index:2}
     @media (max-width:600px){.modal-body iframe,.modal-body video{height:55vh}}
   </style>
+
+  <!-- Ajout : styles locaux légers pour la page contact (déplacés ici pour éviter second <head>) -->
+  <style>
+    .contact-root{max-width:980px;margin:48px auto;padding:24px}
+    .contact-card{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start;background:var(--color-bg,#f8f5f5);padding:20px;border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+    .contact-photo{width:200px;height:200px;object-fit:cover;border-radius:12px;display:block}
+    .contact-heading{margin:0 0 8px 0;font-size:1.4rem;color:var(--color-text-main)}
+    .contact-sub{margin:0 0 16px 0;color:var(--color-text-secondary)}
+    form.contact-form{display:flex;flex-direction:column;gap:12px}
+    label{font-size:0.95rem;color:var(--color-text-main)}
+    input[type=text],input[type=email],textarea{width:100%;padding:10px;border:1px solid rgba(15,23,36,0.08);border-radius:8px;font-size:0.95rem}
+    textarea{min-height:140px;resize:vertical}
+    .actions{display:flex;gap:12px;align-items:center}
+    button.primary{background:var(--color-accent,#0f6b4d);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
+    .note{font-size:0.9rem;color:var(--color-text-secondary)}
+    @media (max-width:720px){.contact-card{grid-template-columns:1fr;align-items:center}.contact-photo{margin:0 auto}}
+  </style>
 </head>
 <body>
   <header>
@@ -119,12 +136,12 @@
     <h1>Shaiane Neves</h1>
     <p style="font-size:0.95rem;color:var(--color-text-secondary)">Ingénieure pédagogique</p>
 
-     <break></break>
+    <br>
     <p>Je suis Shaiane Neves, ingénieure pédagogique, passionnée par la conception de dispositifs d’apprentissage innovants et centrés sur l’apprenant. Mon parcours m’a permis de développer une expertise à la croisée de la pédagogie, de la technologie éducative et de la gestion de projet.</p>
-    <break></break>
+    <br>
     <p>À travers ce portfolio, je vous invite à découvrir mes réalisations, méthodes de travail et réflexions autour de l’ingénierie pédagogique. Vous y trouverez des exemples concrets de modules e-learning, scénarios pédagogiques, accompagnements de formateurs et projets multimédias que j’ai conçus ou coordonnés.</p>
     <p>Mon objectif : concevoir des expériences d’apprentissage engageantes, accessibles et efficaces, en plaçant toujours l’humain au cœur de la formation.</p>
-  <break></break>
+    <br>
   </section>
 
     <section id="cv" class="full-screen-section">
@@ -140,38 +157,19 @@
     <h2>Formation & expériences</h2>
     <h3>Formation</h3>
     <ul>
-      <li>Master de Didactique des Langues et Ingénierie Pédagogique Numérique (Université Grenoble Alpes, en cours)</li>
+      <li>Master de Didactique des Langues et Ingénierie Pédagogique Numérique (Université Grenoble Alpes, 2024-en cours)</li>
       <li>Master de Lettres – Texte, Discours et Relations Sociales (Université Fédérale de Pelotas, 2020-2023)</li>
       <li>Licence en Portugais et Français (Université Fédérale de Pelotas, 2015-2018)</li>
     </ul>
 
     <h3>Expériences sélectionnées</h3>
     <ul>
-      <li>Stage (2025) – Conception de ressources pédagogiques FLE (Laboratoires ICAR et Lidilem)</li>
+      <li>Stagiaire en conception de ressources pédagogiques FLE (ICAR & Lidilem, mars-juin 2025)</li>
+      <li>Analyste Service Desk (HCL Technologies, télétravail, 2023-2024)</li>
       <li>Assistante de langue portugaise (France Éducation, Guyane Française, 2022-2023)</li>
       <li>Enseignante de FLE (Université Fédérale du Paraná, Brésil, 2019-2022)</li>
-      <li>Analyste Service Desk (HCL, télétravail, 2023-2024)</li>
     </ul>
   </section>
-  <style>
-    /* Styles locaux légers pour la page contact (s'appuient sur style.css pour la charte) */
-    .contact-root{max-width:980px;margin:48px auto;padding:24px}
-    .contact-card{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start;background:var(--color-bg,#f8f5f5);padding:20px;border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
-    .contact-photo{width:200px;height:200px;object-fit:cover;border-radius:12px;display:block}
-    .contact-heading{margin:0 0 8px 0;font-size:1.4rem;color:var(--color-text-main)}
-    .contact-sub{margin:0 0 16px 0;color:var(--color-text-secondary)}
-    form.contact-form{display:flex;flex-direction:column;gap:12px}
-    label{font-size:0.95rem;color:var(--color-text-main)}
-    input[type=text],input[type=email],textarea{width:100%;padding:10px;border:1px solid rgba(15,23,36,0.08);border-radius:8px;font-size:0.95rem}
-    textarea{min-height:140px;resize:vertical}
-    .actions{display:flex;gap:12px;align-items:center}
-    button.primary{background:var(--color-accent,#0f6b4d);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
-    .note{font-size:0.9rem;color:var(--color-text-secondary)}
-    @media (max-width:720px){.contact-card{grid-template-columns:1fr;align-items:center}.contact-photo{margin:0 auto}}
-  </style>
-</head>
-<body>
-
 
   <main class="contact-root">
     <h2 id="contact" style="margin-top:8px">Contact</h2>
@@ -207,8 +205,6 @@
             <a href="mailto:shaiane-neves@hotmail.com" class="note" style="margin-left:auto">Ou envoyer directement par email</a>
           </div>
         </form>
-
-        <p class="note" style="margin-top:10px">Adresse électronique : shaiane-neves@hotmail.com</a>
       </div>
     </div>
   </main>
