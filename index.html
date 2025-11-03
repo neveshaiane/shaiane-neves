@@ -4,130 +4,130 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio – Shaiane da Silva Neves</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Ajout : styles pour la galerie et le modal -->
   <style>
-    :root {
-      --color-accent: #DC2626;
-      --color-secondary: #F87171;
-      --color-bg: #F9FAFB;
-      --color-text-main: #111827;
-      --color-text-secondary: #6B7280;
-      --color-success: #10B981;
-    }
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      line-height: 1.6;
-      color: var(--color-text-main);
-      background: var(--color-bg);
-    }
-    header {
-      background: var(--color-accent);
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-    }
-    nav {
-      margin-top: 1rem;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-    nav a:hover {
-      color: var(--color-secondary);
-    }
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-    h2, h3, h4, h5, h6 {
-      color: var(--color-accent);
-      margin-bottom: 0.5rem;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    .projets .projet {
-      border: 1px solid #e5e7eb;
-      border-radius: 6px;
-      padding: 1rem;
-      margin: 1rem 0;
-      background: var(--color-bg);
-    }
-    .btn, button {
-      background: var(--color-accent);
-      color: #fff;
-      border: none;
-      padding: 0.5em 1em;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn:hover, button:hover {
-      background: var(--color-secondary);
-    }
-    .highlight {
-      background: var(--color-secondary);
-      color: var(--color-text-main);
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-    }
-    .success, .callout {
-      color: var(--color-success);
-      font-weight: bold;
-    }
-    .section {
-      background: var(--color-bg);
-      padding: 2em;
-      border-radius: 8px;
-      margin-bottom: 1.5em;
-    }
-    .text-secondary {
-      color: var(--color-text-secondary);
-    }
-    footer {
-      background: var(--color-text-main);
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
+    /* smooth scroll for anchor navigation */
+    html { scroll-behavior: smooth; }
+    /* Galerie */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+    .gallery-item{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column}
+    /* Thumb: now supports background images */
+    .gallery-thumb{position:relative;height:200px;background:#e9f2fb;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .22s ease}
+    .gallery-thumb:hover{transform:scale(1.02)}
+    .gallery-thumb .play{font-size:34px;color:#fff;background:rgba(0,0,0,0.35);padding:10px;border-radius:50%}
+    .gallery-item h3{margin:.6em 0 .2em}
+    .gallery-item p{margin:0 0 .6em;color:#444}
+    /* Modal */
+    #gallery-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:1200;padding:24px}
+    #gallery-modal.open{display:flex}
+    .modal-card{max-width:1100px;width:100%;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(2,6,23,.4)}
+    .modal-body{position:relative;padding:0;background:#000}
+    .modal-body iframe,.modal-body video{width:100%;height:70vh;border:0;display:block}
+    .modal-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:0;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:18px;z-index:2}
+    @media (max-width:600px){.modal-body iframe,.modal-body video{height:55vh}}
   </style>
 </head>
 <body>
   <header>
-    <h1>Shaiane da Silva Neves</h1>
-    <p>Ingénieure pédagogique en formation</p>
-    <nav>
-      <a href="#profil">Profil</a>
-      <a href="#competences">Compétences</a>
-      <a href="#formations">Formation & Expériences</a>
-      <a href="#projets">Projets</a>
-      <a href="#contact">Contact</a>
+  <!-- Sous-titre retiré -->
+    <nav class="minimal-nav" id="main-nav">
+      <a href="#projets">Portfolio</a>
+      <a href="#accueil">A propos de moi</a>
+      <a href="#cv">Compétences</a>
+      <!--<a href="contact.html">Contact</a>-->
+      <div style="margin-left:auto">
+        <a href="http://www.linkedin.com/in/shaiane-neves" target="_blank" rel="noopener">
+          <img src="lk.png" alt="LinkedIn" style="height:55px;width:60px;vertical-align:middle;border-radius:4px;">
+        </a>
+        <a href="#contact" rel="noopener">
+          <img src="mail.png" alt="LinkedIn" style="height:35px;width:40px;vertical-align:middle;border-radius:4px;">
+        </a>
+        
+      </div>
     </nav>
   </header>
 
-  <section id="profil">
-    <h2>Profil professionnel</h2>
-    <p>
-      Étudiante en deuxième année de master de didactique des langues et ingénierie pédagogique,
-      avec une expérience en enseignement et accompagnement des apprenants universitaires, collégiens et public en général.
-      Spécialisée dans la création de supports pédagogiques interactifs et innovants, notamment dans le domaine de
-      l’apprentissage et l’enseignement des langues en ligne.
-    </p>
+  <section id="projets" class="projets">
+    <h2>Portfolio</h2>
+    <p>Projets développés en première anée de Master en ingénierie pédagogique </p>
+    <!-- Galerie -->
+    <div class="gallery-grid">
+      <!-- Écotourisme -->
+      <article class="gallery-item" data-type="iframe" data-src="https://view.genially.com/68c50330cb3513909ff78c62/interactive-content-ecotourisme-en-france" data-thumb="images/thumb-ecotourisme.jpg">
+        <div class="gallery-thumb" title="Voir Écotourisme en France" style="background-image:url('couverture_eco.png')">
+        </div>
+        <h3>Écotourisme en France</h3>
+        <p>Module interactif sur l’écotourisme en France.</p>
+      </article>
+
+      <!-- Amélioration base de ressources -->
+      <article class="gallery-item" data-type="iframe" data-src="https://view.genially.com/68c84f020de733121bd841e8" data-thumb="images/thumb-base-ressources.jpg">
+        <div class="gallery-thumb" title="Voir Amélioration d'une base de ressources" style="background-image:url('couverture_ame.png')">
+        </div>
+        <h3>Amélioration d'une base de ressources</h3>
+        <p>Optimisation et valorisation de ressources pédagogiques en milieu associatif.</p>
+      </article>
+
+      <!-- Au cœur des Alpes -->
+      <article class="gallery-item" data-type="iframe" data-src="https://view.genially.com/674ab784bfaef2fb88a3bc03/presentation-au-coeur-des-alpes-1pptx" data-thumb="couverture_coe.png">
+        <div class="gallery-thumb" title="Voir Au cœur des Alpes" style="background-image:url('couverture_coe.png')">
+        </div>
+        <h3>Au cœur des Alpes</h3>
+        <p>Apprendre le français langue étrangère dans la région des Alpes.</p>
+      </article>
+
+      <!-- Noi, naufraghi (vidéo) -->
+      <article class="gallery-item" data-type="video" data-src="no.mp4" data-thumb="images/thumb-noi.jpg">
+        <div class="gallery-thumb" title="Voir Noi, naufraghi" style="background-image:url('couverture_noi.png')">
+        </div>
+        <h3>Noi, naufraghi</h3>
+        <p>Projet dans l’intercompréhension de langues.</p>
+      </article>
+
+      <!-- Cayenne – Contenu interactif -->
+      <article class="gallery-item" data-type="iframe" data-src="https://view.genially.com/67b5dc00b57c6adc7378c71e/interactive-content-cayenne" data-thumb="images/thumb-cayenne.jpg">
+        <div class="gallery-thumb" title="Voir Cayenne – Contenu interact"
+        style="background-image:url('couverture_cay.png')">
+        </div>
+        <h4>Cayenne – Contenu interactif</h4>
+        <p>Module interactif sur la Guyane française.</p>
+      </article>
+
+      <!-- Projet Genially -->
+      <article class="gallery-item" data-type="iframe" data-src="https://view.genially.com/67fe1a7b233afce0d6bed48f" data-thumb="images/thumb-genially.jpg">
+        <div class="gallery-thumb" title="Voir Projet Genially" style="background-image:url('couverture_pre.png')">
+        </div>
+        <h4>Phrases Préfabriquées</h4>
+        <p>Ressource interactive Genially.</p>
+      </article>
+    </div>
   </section>
 
-  <section id="competences">
+  <!-- Modal / Lightbox -->
+  <div id="gallery-modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Affichage du projet">
+      <div class="modal-body">
+        <button class="modal-close" aria-label="Fermer">✕</button>
+        <div class="modal-content-area"></div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Ajout : section Accueil avec le texte demandé -->
+  <section id="accueil" class="hero" tabindex="-1" style="padding:2.5rem 1rem;max-width:900px;margin:0 auto;">
+    <h1>Shaiane Neves</h1>
+    <p style="font-size:0.95rem;color:var(--color-text-secondary)">Ingénieure pédagogique</p>
+
+     <break></break>
+    <p>Je suis Shaiane Neves, ingénieure pédagogique, passionnée par la conception de dispositifs d’apprentissage innovants et centrés sur l’apprenant. Mon parcours m’a permis de développer une expertise à la croisée de la pédagogie, de la technologie éducative et de la gestion de projet.</p>
+    <break></break>
+    <p>À travers ce portfolio, je vous invite à découvrir mes réalisations, méthodes de travail et réflexions autour de l’ingénierie pédagogique. Vous y trouverez des exemples concrets de modules e-learning, scénarios pédagogiques, accompagnements de formateurs et projets multimédias que j’ai conçus ou coordonnés.</p>
+    <p>Mon objectif : concevoir des expériences d’apprentissage engageantes, accessibles et efficaces, en plaçant toujours l’humain au cœur de la formation.</p>
+  <break></break>
+  </section>
+
+    <section id="cv" class="full-screen-section">
     <h2>Compétences clés</h2>
     <ul>
       <li>Conception de ressources pédagogiques en ligne</li>
@@ -137,9 +137,6 @@
       <li>Gestion LMS et outils numériques : Moodle, Canva, H5P, Genially, Articulate 360...</li>
       <li>Langages : PHP, Javascript, HTML, CSS</li>
     </ul>
-  </section>
-
-  <section id="formations">
     <h2>Formation & expériences</h2>
     <h3>Formation</h3>
     <ul>
@@ -156,29 +153,197 @@
       <li>Analyste Service Desk (HCL, télétravail, 2023-2024)</li>
     </ul>
   </section>
+  <style>
+    /* Styles locaux légers pour la page contact (s'appuient sur style.css pour la charte) */
+    .contact-root{max-width:980px;margin:48px auto;padding:24px}
+    .contact-card{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start;background:var(--color-bg,#f8f5f5);padding:20px;border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+    .contact-photo{width:200px;height:200px;object-fit:cover;border-radius:12px;display:block}
+    .contact-heading{margin:0 0 8px 0;font-size:1.4rem;color:var(--color-text-main)}
+    .contact-sub{margin:0 0 16px 0;color:var(--color-text-secondary)}
+    form.contact-form{display:flex;flex-direction:column;gap:12px}
+    label{font-size:0.95rem;color:var(--color-text-main)}
+    input[type=text],input[type=email],textarea{width:100%;padding:10px;border:1px solid rgba(15,23,36,0.08);border-radius:8px;font-size:0.95rem}
+    textarea{min-height:140px;resize:vertical}
+    .actions{display:flex;gap:12px;align-items:center}
+    button.primary{background:var(--color-accent,#0f6b4d);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
+    .note{font-size:0.9rem;color:var(--color-text-secondary)}
+    @media (max-width:720px){.contact-card{grid-template-columns:1fr;align-items:center}.contact-photo{margin:0 auto}}
+  </style>
+</head>
+<body>
 
-  <section id="projets" class="projets">
-    <h2>Projets personnels</h2>
-    <p>Voici un espace pour présenter vos projets personnels en ingénierie pédagogique :</p>
-    
-    <!-- Exemple de projet - à dupliquer et modifier -->
-    <div class="projet">
-      <h3>Nom du projet</h3>
-      <p>Description du projet (objectifs, outils utilisés, résultats, etc.).</p>
+
+  <main class="contact-root">
+    <h2 id="contact" style="margin-top:8px">Contact</h2>
+    <p class="contact-sub">Envoyez-moi un message rapide — cela ouvrira votre client mail avec le message prêt à envoyer.
+    </p>
+      <div>
+
+        <p class="note"></p>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <div>
+            <label for="name">Votre nom</label>
+            <input id="name" name="name" type="text" placeholder="Ex : Marie Dupont">
+          </div>
+
+          <div>
+            <label for="email">Votre email (facultatif)</label>
+            <input id="email" name="email" type="email" placeholder="exemple@domaine.com">
+          </div>
+
+          <div>
+            <label for="subject">Objet</label>
+            <input id="subject" name="subject" type="text" placeholder="Sujet du message">
+          </div>
+
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Écrivez votre message ici..."></textarea>
+          </div>
+
+          <div class="actions">
+            <button id="sendBtn" type="submit" class="primary">Envoyer</button>
+            <a href="mailto:shaiane-neves@hotmail.com" class="note" style="margin-left:auto">Ou envoyer directement par email</a>
+          </div>
+        </form>
+
+        <p class="note" style="margin-top:10px">Adresse électronique : shaiane-neves@hotmail.com</a>
+      </div>
     </div>
+  </main>
 
-    <!-- Tu peux ajouter ici d'autres projets -->
-  </section>
-
-  <section id="contact">
-  <h2>Contact</h2>
-  <p>📧 Email : <a href="mailto:shaiane-neves@hotmail.com">shaiane-neves@hotmail.com</a></p>
-  <p>📱 Téléphone : +33 07 44 41 91 39</p>
-  <p>🔗 LinkedIn : <a href="http://www.linkedin.com/in/shaiane-neves" target="_blank" rel="noopener">www.linkedin.com/in/shaiane-neves</a></p>
-  </section>
-
+  <script>
+    (function(){
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const to = 'shaiane-neves@hotmail.com';
+        const name = (form.name.value || '').trim();
+        const email = (form.email.value || '').trim();
+        const subject = (form.subject.value || 'Message depuis le site').trim();
+        const message = (form.message.value || '').trim();
+        if(!message){
+          alert('Merci d\'écrire un message avant d\'envoyer.');
+          return;
+        }
+        let body = '';
+        if(name) body += 'Nom: ' + name + '\n\n';
+        if(email) body += 'Email: ' + email + '\n\n';
+        body += message;
+        const mailto = 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        // Ouvrir le client mail (nouvelle fenêtre/onglet selon navigateur)
+        window.location.href = mailto;
+      });
+    })();
+  </script>
   <footer>
-    © 2025 – Shaiane da Silva Neves | Portfolio Ingénierie pédagogique
+  © 2025 – Shaiane Neves<br>
+  Ingénieure pédagogique en formation
   </footer>
+
+  <script>
+    // Highlight active nav link based on section in view
+    (function(){
+      const navLinks = document.querySelectorAll('nav.minimal-nav a[href^="#"]');
+      const sections = Array.from(navLinks).map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const id = entry.target.id;
+          const link = document.querySelector('nav.minimal-nav a[href="#'+id+'"]');
+          if(entry.isIntersecting){
+            navLinks.forEach(l=>l.classList.remove('active'));
+            if(link) link.classList.add('active');
+          }
+        });
+      }, { root: null, threshold: 0.45 });
+      sections.forEach(s=>obs.observe(s));
+
+      // Déterminer quel onglet afficher initialement.
+      // - Si l'URL contient un hash correspondant à une section/navigation, on le respecte.
+      // - Sinon on force "Accueil" actif.
+      // On réapplique aussi cette logique après le 'load' / RAF pour éviter
+      // que l'IntersectionObserver ne remplace l'état initial immédiatement.
+      function setInitialActive(){
+        const hash = window.location.hash;
+        if(hash){
+          const targetLink = document.querySelector('nav.minimal-nav a[href="'+hash+'"]');
+          if(targetLink){
+            navLinks.forEach(l=>l.classList.remove('active'));
+            targetLink.classList.add('active');
+            return;
+          }
+        }
+        const accueilLink = document.querySelector('nav.minimal-nav a[href="#accueil"]');
+        if (accueilLink) {
+          navLinks.forEach(l=>l.classList.remove('active'));
+          accueilLink.classList.add('active');
+        }
+      }
+
+      // Appliquer immédiatement, puis ré-appliquer après chargement pour prendre le dessus
+      // si l'IntersectionObserver a modifié l'état.
+      setInitialActive();
+      window.addEventListener('load', ()=> requestAnimationFrame(setInitialActive));
+    })();
+
+    // Galerie : ouverture modal et injection du contenu
+    (function(){
+      const modal = document.getElementById('gallery-modal');
+      const modalArea = modal.querySelector('.modal-content-area');
+      const closeBtn = modal.querySelector('.modal-close');
+
+      // Appliquer les images de fond depuis data-thumb si présents et si aucun background inline n'existe
+      document.querySelectorAll('.gallery-item').forEach(item=>{
+        const thumbEl = item.querySelector('.gallery-thumb');
+        if(item.dataset.thumb && thumbEl && !thumbEl.style.backgroundImage){
+          thumbEl.style.backgroundImage = `url("${item.dataset.thumb}")`;
+        }
+      });
+
+      function openModal(type, src){
+        // vider l'ancien contenu
+        modalArea.innerHTML = '';
+        if(type === 'iframe'){
+          const iframe = document.createElement('iframe');
+          iframe.src = src;
+          iframe.allowFullscreen = true;
+          iframe.loading = 'lazy';
+          modalArea.appendChild(iframe);
+        } else if(type === 'video'){
+          const video = document.createElement('video');
+          video.src = src;
+          video.controls = true;
+          video.autoplay = true;
+          modalArea.appendChild(video);
+        }
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        modalArea.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      // click sur vignette
+      document.querySelectorAll('.gallery-item').forEach(item=>{
+        const thumb = item.querySelector('.gallery-thumb');
+        thumb.addEventListener('click', ()=> openModal(item.dataset.type, item.dataset.src));
+      });
+
+      // fermer
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e)=>{
+        if(e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,192 @@
+/* Section accueil plein écran, photo à droite */
+.hero-full {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* dégradé subtil sur fond clair */
+  background: linear-gradient(120deg, var(--color-bg, #F4FAF7) 60%, #E6F7EE 100%);
+  padding: 0 5vw;
+}
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 600px;
+}
+.hero-title {
+  font-size: 3em;
+  font-weight: 900;
+  margin-bottom: 0.2em;
+  letter-spacing: 1px;
+  color: var(--color-text-main, #0f1724);
+}
+.hero-subtitle {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-bottom: 0.7em;
+  color: var(--color-accent, #0f6b4d);
+}
+.hero-linkedin {
+  margin-bottom: 1.5em;
+}
+.hero-linkedin img {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+}
+.hero-desc {
+  color: var(--color-text-secondary, #6B7280);
+  font-size: 1.15em;
+  font-weight: 400;
+  margin-top: 2em;
+}
+.hero-photo {
+  width: 340px;
+  height: 440px;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  background: #fff;
+}
+    :root {
+      /* Palette mise à jour */
+      --color-accent: #0f6b4d; /* vert foncé */
+      --color-secondary: #1fb07a; /* vert clair */
+      --color-bg: #F4FAF7; /* fond clair légèrement vert */
+      --color-text-main: #0f1724; /* texte principal sombre */
+      --color-text-secondary: #6B7280; /* texte secondaire gris */
+      --color-success: #10B981; /* vert succès */
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      line-height: 1.6;
+      color: var(--color-text-main);
+      background: var(--color-bg);
+    }
+    header {
+      background: var(--color-accent);
+      color: #fff;
+      padding: 0.7rem 0.5rem;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--color-secondary);
+    }
+    section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+    }
+    h2, h3, h4, h5, h6 {
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .projets .projet {
+  padding: 1rem 0;
+  margin: 1.5rem 0;
+    }
+    .btn, button {
+      background: var(--color-accent);
+      color: #fff;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover, button:hover {
+      background: var(--color-secondary);
+    }
+    .highlight {
+      background: var(--color-secondary);
+      color: var(--color-text-main);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    .success, .callout {
+      color: var(--color-success);
+      font-weight: bold;
+    }
+    .section {
+      background: var(--color-bg);
+      padding: 2em;
+      border-radius: 8px;
+      margin-bottom: 1.5em;
+    }
+    .text-secondary {
+      color: var(--color-text-secondary);
+    }
+    footer {
+      background: var(--color-text-main);
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+/* Minimaliste: nav fixe et sections claires */
+html { scroll-behavior: smooth; }
+.minimal-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 1px 0 rgba(16,24,40,0.04);
+  z-index: 1000;
+}
+.minimal-nav a {
+  color: var(--color-text-main);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight:600;
+}
+.minimal-nav a:hover { background: rgba(37,99,235,0.06); }
+.minimal-nav a.active { background: var(--color-accent); color: #fff; }
+
+/* Add top spacing so content isn't hidden under fixed nav */
+main, section { padding-top: 72px; }
+
+/* Sections visually minimal */
+section { padding: 48px 24px; }
+.projets { padding-bottom: 16px; }
+
+/* Make micro modules compact by default; still use zoomable class */
+.micromodules-panel { background: transparent; box-shadow:none; padding: 16px 8px; border-radius:0; }
+.micromodules-panel .projet iframe { max-width: 100%; height: 260px; }
+
+/* Ensure hero simplified */
+.hero-full { background: var(--color-bg); }
+.hero-photo { border-radius:8px; }
+    
