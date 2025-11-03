@@ -43,6 +43,12 @@
     button.primary{background:var(--color-accent,#0f6b4d);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
     .note{font-size:0.9rem;color:var(--color-text-secondary)}
     @media (max-width:720px){.contact-card{grid-template-columns:1fr;align-items:center}.contact-photo{margin:0 auto}}
+  /* Shared card styling for panels (À propos, Compétences, Contact) */
+  .panel-card{max-width:980px;margin:24px auto;padding:20px;background:var(--color-bg,#ffffff);border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+  .panel-card h2{margin-top:0}
+  /* muted variant (grey background) for panels that need the original contact look */
+  .panel-card--muted{background:var(--color-bg,#f8f5f5)}
+  /* about-panel uses its own layout (not forced to panel-card) */
   </style>
 </head>
 <body>
@@ -50,7 +56,7 @@
   <!-- Sous-titre retiré -->
     <nav class="minimal-nav" id="main-nav">
       <a href="#projets">Portfolio</a>
-      <a href="#accueil">A propos de moi</a>
+      <a href="#accueil">À propos</a>
       <a href="#cv">Compétences</a>
       <!--<a href="contact.html">Contact</a>-->
       <div style="margin-left:auto">
@@ -131,84 +137,87 @@
     </div>
   </div>
 
-    <!-- Ajout : section Accueil avec le texte demandé -->
-  <section id="accueil" class="hero" tabindex="-1" style="padding:2.5rem 1rem;max-width:900px;margin:0 auto;">
-    <h1>Shaiane Neves</h1>
-    <p style="font-size:0.95rem;color:var(--color-text-secondary)">Ingénieure pédagogique</p>
+    <section id="accueil" class="hero" tabindex="-1" style="padding:2.5rem 1rem;position:relative;">
+      <!-- Remplacement du contenu: panneau image + texte -->
+           <h2>💡 À propos de moi</h2>
+  <div class="about-panel">
+        <figure class="about-photo" aria-hidden="false">
+          <img src="photo1.jpeg" alt="Portrait de Shaiane Neves">
+        </figure>
 
-    <br>
-    <p>Je suis Shaiane Neves, ingénieure pédagogique, passionnée par la conception de dispositifs d’apprentissage innovants et centrés sur l’apprenant. Mon parcours m’a permis de développer une expertise à la croisée de la pédagogie, de la technologie éducative et de la gestion de projet.</p>
-    <br>
-    <p>À travers ce portfolio, je vous invite à découvrir mes réalisations, méthodes de travail et réflexions autour de l’ingénierie pédagogique. Vous y trouverez des exemples concrets de modules e-learning, scénarios pédagogiques, accompagnements de formateurs et projets multimédias que j’ai conçus ou coordonnés.</p>
-    <p>Mon objectif : concevoir des expériences d’apprentissage engageantes, accessibles et efficaces, en plaçant toujours l’humain au cœur de la formation.</p>
-    <br>
-  </section>
+        <div class="about-text">
+          <p class="lead">Je suis Shaiane Neves, une exploratrice du e‑learning, passionnée par l’apprentissage en autonomie.</p>
 
+          <p>J’imagine des parcours de formation vivants, interactifs et inclusifs, où chaque apprenant devient acteur de son apprentissage.</p>
+
+          <p>Mon ambition : rendre le savoir accessible à tous, avec une touche de créativité et beaucoup de sens.</p>
+        </div>
+      </div>
+    </section>
     <section id="cv" class="full-screen-section">
-    <h2>Compétences clés</h2>
-    <ul>
-      <li>Conception de ressources pédagogiques en ligne</li>
-      <li>Optimisation de l’expérience utilisateur (UX)</li>
-      <li>Développement de modules interactifs</li>
-      <li>Animation d’ateliers de langues</li>
-      <li>Gestion LMS et outils numériques : Moodle, Canva, H5P, Genially, Articulate 360...</li>
-      <li>Langages : PHP, Javascript, HTML, CSS</li>
-    </ul>
-    <h2>Formation & expériences</h2>
-    <h3>Formation</h3>
-    <ul>
-      <li>Master de Didactique des Langues et Ingénierie Pédagogique Numérique (Université Grenoble Alpes, 2024-en cours)</li>
-      <li>Master de Lettres – Texte, Discours et Relations Sociales (Université Fédérale de Pelotas, 2020-2023)</li>
-      <li>Licence en Portugais et Français (Université Fédérale de Pelotas, 2015-2018)</li>
-    </ul>
+    <div class="panel-card panel-card--muted">
+        <h2><span style="color:#000">✎ᝰ</span> Compétences</h2>
+        <ul>
+          <li>Conception de ressources pédagogiques en ligne</li>
+          <li>Optimisation de l’expérience utilisateur (UX)</li>
+          <li>Développement de modules interactifs</li>
+          <li>Animation d’ateliers de langues</li>
+          <li>Gestion LMS et outils numériques : Moodle, Canva, H5P, Genially, Articulate 360...</li>
+          <li>Langages : PHP, Javascript, HTML, CSS</li>
+        </ul>
+        <h2>📖 Formation & expériences</h2>
+        <h3>Formation</h3>
+        <ul>
+          <li>Master de Didactique des Langues et Ingénierie Pédagogique Numérique (Université Grenoble Alpes, 2024-en cours)</li>
+          <li>Master de Lettres – Texte, Discours et Relations Sociales (Université Fédérale de Pelotas, 2020-2023)</li>
+          <li>Licence en Portugais et Français (Université Fédérale de Pelotas, 2015-2018)</li>
+        </ul>
 
-    <h3>Expériences sélectionnées</h3>
-    <ul>
-      <li>Stagiaire en conception de ressources pédagogiques FLE (ICAR & Lidilem, mars-juin 2025)</li>
-      <li>Analyste Service Desk (HCL Technologies, télétravail, 2023-2024)</li>
-      <li>Assistante de langue portugaise (France Éducation, Guyane Française, 2022-2023)</li>
-      <li>Enseignante de FLE (Université Fédérale du Paraná, Brésil, 2019-2022)</li>
-    </ul>
-  </section>
+        <h3>Expériences sélectionnées</h3>
+        <ul>
+          <li>Stagiaire en conception de ressources pédagogiques FLE (ICAR & Lidilem, mars-juin 2025)</li>
+          <li>Analyste Service Desk (HCL Technologies, télétravail, 2023-2024)</li>
+          <li>Assistante de langue portugaise (France Éducation, Guyane Française, 2022-2023)</li>
+          <li>Enseignante de FLE (Université Fédérale du Paraná, Brésil, 2019-2022)</li>
+        </ul>
+      </div>
+    </section>
 
   <main class="contact-root">
-    <h2 id="contact" style="margin-top:8px">Contact</h2>
-    <p class="contact-sub">Envoyez-moi un message rapide — cela ouvrira votre client mail avec le message prêt à envoyer.
-    </p>
-      <div>
+  <div class="panel-card">
+      <h2 id="contact" style="margin-top:8px">Contact</h2>
+      <p class="contact-sub">Envoyez-moi un message rapide — cela ouvrira votre client mail avec le message prêt à envoyer.</p>
 
-        <p class="note"></p>
+      <p class="note"></p>
 
-        <form id="contact-form" class="contact-form" novalidate>
-          <div>
-            <label for="name">Votre nom</label>
-            <input id="name" name="name" type="text" placeholder="Ex : Marie Dupont">
-          </div>
+      <form id="contact-form" class="contact-form" novalidate>
+        <div>
+          <label for="name">Votre nom</label>
+          <input id="name" name="name" type="text" placeholder="Ex : Marie Dupont">
+        </div>
 
-          <div>
-            <label for="email">Votre email (facultatif)</label>
-            <input id="email" name="email" type="email" placeholder="exemple@domaine.com">
-          </div>
+        <div>
+          <label for="email">Votre email (facultatif)</label>
+          <input id="email" name="email" type="email" placeholder="exemple@domaine.com">
+        </div>
 
-          <div>
-            <label for="subject">Objet</label>
-            <input id="subject" name="subject" type="text" placeholder="Sujet du message">
-          </div>
+        <div>
+          <label for="subject">Objet</label>
+          <input id="subject" name="subject" type="text" placeholder="Sujet du message">
+        </div>
 
-          <div>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Écrivez votre message ici..."></textarea>
-          </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Écrivez votre message ici..."></textarea>
+        </div>
 
-          <div class="actions">
-            <button id="sendBtn" type="submit" class="primary">Envoyer</button>
-            <a href="mailto:shaiane-neves@hotmail.com" class="note" style="margin-left:auto">Ou envoyer directement par email</a>
-          </div>
-        </form>
-      </div>
+        <div class="actions">
+          <button id="sendBtn" type="submit" class="primary">Envoyer</button>
+          <a href="mailto:shaiane-neves@hotmail.com" class="note" style="margin-left:auto">Ou envoyer directement par email</a>
+        </div>
+      </form>
     </div>
   </main>
-
   <script>
     (function(){
       const form = document.getElementById('contact-form');

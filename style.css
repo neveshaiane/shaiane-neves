@@ -189,4 +189,99 @@ section { padding: 48px 24px; }
 /* Ensure hero simplified */
 .hero-full { background: var(--color-bg); }
 .hero-photo { border-radius:8px; }
-    
+
+/* About panel: image à gauche, texte centré à droite (inspire l'image jointe) */
+.about-panel {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 40px;
+  background: var(--color-bg, #F4FAF7);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.06);
+}
+
+/* Photo */
+.about-photo {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.about-photo img {
+  display: block;
+  width: 280px;        /* réduit (avant 320px) */
+  height: 380px;       /* réduit (avant 440px) */
+  object-fit: cover;
+  border: 6px solid rgba(15,23,36,0.95); /* cadre sombre */
+  border-radius: 6px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.12);
+}
+
+/* Ajustements responsive */
+@media (max-width: 1000px) {
+  .about-photo img {
+    width: 240px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 720px) {
+  .about-photo img {
+    width: min(60vw, 320px);
+    height: auto;
+    max-height: 60vh;
+  }
+}
+
+/* Texte */
+.about-text {
+  flex: 1 1 60%;
+  text-align: center;
+  color: var(--color-text-main, #0f1724);
+}
+.about-heading {
+  margin: 0 0 18px 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+  font-weight: 700;
+  color: var(--color-accent, #0f6b4d);
+}
+.about-text .lead {
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  margin: 0 0 20px 0;
+  line-height: 1.6;
+  font-weight: 600;
+}
+.about-text p {
+  margin: 0 0 18px 0;
+  font-size: clamp(0.98rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-text-main);
+}
+
+/* On aligne la grille visuellement si le conteneur plus étroit */
+@media (max-width: 1000px) {
+  .about-panel {
+    gap: 32px;
+    padding: 28px;
+  }
+  .about-photo img {
+    width: 280px;
+    height: 380px;
+  }
+}
+
+/* Mobile: empile verticalement */
+@media (max-width: 720px) {
+  .about-panel {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+  .about-photo img {
+    width: min(68vw, 360px);
+    height: auto;
+    max-height: 60vh;
+  }
+  .about-text { padding-top: 12px; }
+}
