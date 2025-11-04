@@ -297,10 +297,13 @@
             return;
           }
         }
-        const accueilLink = document.querySelector('nav.minimal-nav a[href="#accueil"]');
-        if (accueilLink) {
+        // Default to Portfolio (#projets) when no hash is present
+        const projetsLink = document.querySelector('nav.minimal-nav a[href="#projets"]');
+        if (projetsLink) {
           navLinks.forEach(l=>l.classList.remove('active'));
-          accueilLink.classList.add('active');
+          projetsLink.classList.add('active');
+          const projetsSection = document.querySelector('#projets');
+          if(projetsSection){ projetsSection.scrollIntoView(); }
         }
       }
 
