@@ -15,6 +15,9 @@
     /* Thumb: now supports background images */
     .gallery-thumb{position:relative;height:200px;background:#e9f2fb;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .22s ease}
     .gallery-thumb:hover{transform:scale(1.02)}
+  /* Disable hover and clicks for items marked .no-click */
+  .gallery-item.no-click .gallery-thumb{cursor:default;pointer-events:none;transform:none}
+  .gallery-item.no-click .gallery-thumb:hover{transform:none}
     .gallery-thumb .play{font-size:34px;color:#fff;background:rgba(0,0,0,0.35);padding:10px;border-radius:50%}
     .gallery-item h3{margin:.6em 0 .2em}
     .gallery-item p{margin:0 0 .6em;color:#444}
@@ -58,6 +61,7 @@
       <a href="#projets">Portfolio</a>
       <a href="#accueil">À propos</a>
       <a href="#cv">Compétences</a>
+      <a href="#venir">À venir</a>    
       <!--<a href="contact.html">Contact</a>-->
       <div style="margin-left:auto">
         <a href="http://www.linkedin.com/in/shaiane-neves" target="_blank" rel="noopener">
@@ -200,6 +204,26 @@
         </ul>
       </div>
     </section>
+  <section id="venir" class="venir">
+    <h2>À venir</h2>
+    <p>👨‍💻 Projets en développement avec l’outil Storyline 360</p>
+
+    <div class="gallery-grid">
+      <article class="gallery-item no-click" data-type="iframe" data-src="images/venir-1-large.jpg" data-thumb="images/call.png">
+        <div class="gallery-thumb" title="Français Bechouia Bechouia" style="background-image:url('call.png')"></div>
+        <h4>Français Bechouia Bechouia</h4>
+        <p>Formation pour téléconseillers arabophones</p>
+      </article>
+
+      <article class="gallery-item no-click" data-type="iframe" data-src="images/venir-2-large.jpg" data-thumb="ia.png">
+        <div class="gallery-thumb" title="IA générative" style="background-image:url('ia.png')"></div>
+        <h4>Booster ton métier avec l’IA</h4>
+        <p>Mini-module d'initiation au prompt engineering.</p>
+      </article>
+
+      </article>
+    </div>
+  </section>
 
   <main class="contact-root">
   <div class="panel-card">
@@ -359,6 +383,13 @@
       document.querySelectorAll('.gallery-item').forEach(item=>{
         const thumb = item.querySelector('.gallery-thumb');
         thumb.addEventListener('click', ()=> openModal(item.dataset.type, item.dataset.src));
+      });
+
+      
+      // click sur vignette
+      document.querySelectorAll('.gallery2').forEach(item=>{
+        const thumb = item.querySelector('.galleryto');
+        thumb.addEventListener('disable', ()=> openModal(item.dataset.type, item.dataset.src));
       });
 
       // fermer
