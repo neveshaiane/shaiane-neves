@@ -64,6 +64,13 @@
   .flip-card-back img{width:100%;height:100%;object-fit:cover;display:block}
   /* Make flip-card clickable (indicate affordance) */
   .flip-card{cursor:pointer}
+  /* CV fixes: prevent frame/content from changing size */
+  #cv > .panel-card{background:transparent;box-shadow:none;padding:0}
+  #cv .flip-card{max-width:980px;margin:12px auto;width:100%;aspect-ratio:4/3;position:relative}
+  #cv .flip-card-inner{height:100%}
+  #cv .flip-card-front,#cv .flip-card-back{position:absolute;inset:0;border-radius:12px;overflow:hidden;background:none;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+  #cv .full-screen-img{width:100%;height:100%;object-fit:cover;display:block}
+  #cv .flip-card-front .content,#cv .flip-card-back .content{height:100%;overflow:auto;padding:18px;box-sizing:border-box}
   </style>
 </head>
 <body>
@@ -72,7 +79,6 @@
     <nav class="minimal-nav" id="main-nav">
       <a href="#projets">Portfolio</a>
       <a href="#venir">À venir</a>
-      <a href="#cv">Compétences</a>
       <a href="#accueil">À propos</a>    
       <!--<a href="contact.html">Contact</a>-->
       <div style="margin-left:auto">
@@ -189,32 +195,37 @@
       </article>
     </div>
   </section>
-  <section id="cv" class="full-screen-section">
-    <div class="panel-card panel-card--muted">
-    <img src="comp1.png" class="full-screen-img" alt="Compétences"> 
-  </section>
+  <!-- Compétences section removed per user request -->
     <section id="accueil" class="hero" tabindex="-1" style="padding:2.5rem 1rem;position:relative;">
-      <!-- Remplacement du contenu: panneau image + texte -->
-           <h2>💡 À propos de moi</h2>
-  <div class="flip-card" id="about-flip" role="button" aria-pressed="false" tabindex="0" title="Tourner la page">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <div class="about-panel">
-          <figure class="about-photo" aria-hidden="false">
-            <img src="photo1.jpeg" alt="Portrait de Shaiane Neves">
-          </figure>
-          <div class="about-text">
-            <p class="lead">Je suis Shaiane Neves, une exploratrice du e‑learning, passionnée par l’apprentissage en autonomie.</p>
-            <p>J’imagine des parcours de formation vivants, interactifs et inclusifs, où chaque apprenant devient acteur de son apprentissage.</p>
-            <p>Mon ambition : rendre le savoir accessible à tous, avec une touche de créativité et beaucoup de sens.</p>
-          </div>
+      <!-- À propos propre + images comp.png et exp.png insérées en dessous -->
+      <h2>💡 À propos de moi</h2>
+      <div class="about-panel">
+        <figure class="about-photo" aria-hidden="false">
+          <img src="photo1.jpeg" alt="Portrait de Shaiane Neves">
+        </figure>
+        <div class="about-text">
+          <p class="lead">Je suis Shaiane Neves, une exploratrice du e‑learning, passionnée par l’apprentissage en autonomie.</p>
+          <p>J’imagine des parcours de formation vivants, interactifs et inclusifs, où chaque apprenant devient acteur de son apprentissage.</p>
+          <p>Mon ambition : rendre le savoir accessible à tous, avec une touche de créativité et beaucoup de sens.</p>
         </div>
+        <button class="scroll-indicator" id="about-scroll" aria-label="Voir plus">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
-      <div class="flip-card-back" aria-hidden="true">
-        <img src="exp.png" alt="Expérience / illustration">
+
+      <!-- Images demandées: comp.png puis exp.png -->
+         <div>
+      <div class="about-images" style="max-width:980px;margin:20px auto;display:flex;flex-direction:column;gap:18px;align-items:center;">
+        <img src="comp.png" alt="Compétences (comp.png)">
+      </div> 
       </div>
-    </div>
-  </div>
+    <div>      
+    <div class="about-images" style="max-width:980px;margin:20px auto;display:flex;flex-direction:column;gap:18px;align-items:center;">
+        <img src="exp.png" alt="Expérience (exp.png)">
+      </div>
+      </div>
     </section>
   <main class="contact-root">
   <div class="panel-card">
@@ -290,6 +301,35 @@
       flip.addEventListener('click', toggleFlip);
       flip.addEventListener('keydown', (e)=>{
         if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
+      });
+    })();
+
+    // Flip-card interaction for CV panel (comp.png front, exp.png back)
+    (function(){
+      const flip = document.getElementById('cv-flip');
+      if(!flip) return;
+      function toggleFlip(){
+        flip.classList.toggle('is-flipped');
+        const pressed = flip.classList.contains('is-flipped');
+        flip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      }
+      flip.addEventListener('click', toggleFlip);
+      flip.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
+      });
+    })();
+
+    // Scroll indicator behavior: scroll to first .about-images when clicked
+    (function(){
+      const btn = document.getElementById('about-scroll');
+      const target = document.querySelector('.about-images');
+      if(!btn || !target) return;
+      // animate a few times to attract attention
+      btn.classList.add('animate');
+      // stop animation after some time
+      setTimeout(()=> btn.classList.remove('animate'), 6000);
+      btn.addEventListener('click', ()=>{
+        target.scrollIntoView({behavior:'smooth', block:'start'});
       });
     })();
   </script>
