@@ -18,6 +18,8 @@
   /* Disable hover and clicks for items marked .no-click */
   .gallery-item.no-click .gallery-thumb{cursor:default;pointer-events:none;transform:none}
   .gallery-item.no-click .gallery-thumb:hover{transform:none}
+    /* Make specific full-width image fill the viewport while keeping aspect ratio */
+    .full-screen-img{width:100%;height:100vh; object-fit:cover; display:block}
     .gallery-thumb .play{font-size:34px;color:#fff;background:rgba(0,0,0,0.35);padding:10px;border-radius:50%}
     .gallery-item h3{margin:.6em 0 .2em}
     .gallery-item p{margin:0 0 .6em;color:#444}
@@ -52,6 +54,16 @@
   /* muted variant (grey background) for panels that need the original contact look */
   .panel-card--muted{background:var(--color-bg,#f8f5f5)}
   /* about-panel uses its own layout (not forced to panel-card) */
+  /* Flip-card (page turn) styles for About panel */
+  .flip-card{max-width:980px;margin:24px auto;perspective:1200px}
+  .flip-card-inner{position:relative;width:100%;height:100%;transition:transform 0.9s cubic-bezier(.2,.9,.3,1);transform-style:preserve-3d}
+  .flip-card.is-flipped .flip-card-inner{transform:rotateY(180deg)}
+  .flip-card-front,.flip-card-back{position:relative;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden}
+  .flip-card-front{background:var(--color-bg,#ffffff);box-shadow:0 6px 22px rgba(12,20,30,0.06);padding:20px}
+  .flip-card-back{position:absolute;inset:0;transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;background:#111}
+  .flip-card-back img{width:100%;height:100%;object-fit:cover;display:block}
+  /* Make flip-card clickable (indicate affordance) */
+  .flip-card{cursor:pointer}
   </style>
 </head>
 <body>
@@ -59,9 +71,9 @@
   <!-- Sous-titre retiré -->
     <nav class="minimal-nav" id="main-nav">
       <a href="#projets">Portfolio</a>
-      <a href="#accueil">À propos</a>
+      <a href="#venir">À venir</a>
       <a href="#cv">Compétences</a>
-      <a href="#venir">À venir</a>    
+      <a href="#accueil">À propos</a>    
       <!--<a href="contact.html">Contact</a>-->
       <div style="margin-left:auto">
         <a href="http://www.linkedin.com/in/shaiane-neves" target="_blank" rel="noopener">
@@ -77,7 +89,7 @@
 
   <section id="projets" class="projets">
     <h2>Projets</h2>
-    <p>Développés en première année de master en Ingénierie pédagogique </p>
+    <p>Développés en première année de master en Ingénierie pédagogique (année 2024-2025) </p>
     <!-- Galerie -->
     <div class="gallery-grid">
       <!-- Écotourisme -->
@@ -121,10 +133,9 @@
         <p>Base de ressources : optimisation et valorisation de ressources pédagogiques.</p>
       </article>
 
-      
-      <!-- Au cœur des Alpes -->
-      <article class="gallery-item" data-type="iframe" data-src="https://view.genially.com/674ab784bfaef2fb88a3bc03/presentation-au-coeur-des-alpes-1pptx" data-thumb="couverture_coe.png">
-        <div class="gallery-thumb" title="Voir Au cœur des Alpes" style="background-image:url('couverture_coe.png')">
+      <!-- Au cœur des Alpes (vidéo) -->
+      <article class="gallery-item" data-type="video" data-src="coeur.mp4" data-thumb="images/thumb-coe.png">
+        <div class="gallery-thumb" title="Cartophonie" style="background-image:url('couverture_coe.png')">
         </div>
         <h4>Au cœur des Alpes</h4>
         <p>Modules sur Genially : apprendre le FLE dans la région des Alpes.</p>
@@ -158,52 +169,6 @@
       </div>
     </div>
   </div>
-
-    <section id="accueil" class="hero" tabindex="-1" style="padding:2.5rem 1rem;position:relative;">
-      <!-- Remplacement du contenu: panneau image + texte -->
-           <h2>💡 À propos de moi</h2>
-  <div class="about-panel">
-        <figure class="about-photo" aria-hidden="false">
-          <img src="photo1.jpeg" alt="Portrait de Shaiane Neves">
-        </figure>
-
-        <div class="about-text">
-          <p class="lead">Je suis Shaiane Neves, une exploratrice du e‑learning, passionnée par l’apprentissage en autonomie.</p>
-
-          <p>J’imagine des parcours de formation vivants, interactifs et inclusifs, où chaque apprenant devient acteur de son apprentissage.</p>
-
-          <p>Mon ambition : rendre le savoir accessible à tous, avec une touche de créativité et beaucoup de sens.</p>
-        </div>
-      </div>
-    </section>
-    <section id="cv" class="full-screen-section">
-    <div class="panel-card panel-card--muted">
-        <h2><span style="color:#000">✎ᝰ</span> Compétences</h2>
-        <ul>
-          <li>Conception de ressources pédagogiques en ligne</li>
-          <li>Optimisation de l’expérience utilisateur (UX)</li>
-          <li>Développement de modules interactifs</li>
-          <li>Animation d’ateliers de langues</li>
-          <li>Gestion LMS et outils numériques : Moodle, Canva, H5P, Genially, Articulate 360...</li>
-          <li>Langages : PHP, Javascript, HTML, CSS</li>
-        </ul>
-        <h2>📖 Formation & expériences</h2>
-        <h3>Formation</h3>
-        <ul>
-          <li>Master de Didactique des Langues et Ingénierie Pédagogique Numérique (Université Grenoble Alpes, 2024-en cours)</li>
-          <li>Master de Lettres – Texte, Discours et Relations Sociales (Université Fédérale de Pelotas, 2020-2023)</li>
-          <li>Licence en Portugais et Français (Université Fédérale de Pelotas, 2015-2018)</li>
-        </ul>
-
-        <h3>Expériences sélectionnées</h3>
-        <ul>
-          <li>Stagiaire en conception de ressources pédagogiques FLE (ICAR & Lidilem, mars-juin 2025)</li>
-          <li>Analyste Service Desk (HCL Technologies, télétravail, 2023-2024)</li>
-          <li>Assistante de langue portugaise (France Éducation, Guyane Française, 2022-2023)</li>
-          <li>Enseignante de FLE (Université Fédérale du Paraná, Brésil, 2019-2022)</li>
-        </ul>
-      </div>
-    </section>
   <section id="venir" class="venir">
     <h2>À venir</h2>
     <p>👨‍💻 Projets en développement avec l’outil Storyline 360</p>
@@ -224,7 +189,33 @@
       </article>
     </div>
   </section>
-
+  <section id="cv" class="full-screen-section">
+    <div class="panel-card panel-card--muted">
+    <img src="comp1.png" class="full-screen-img" alt="Compétences"> 
+  </section>
+    <section id="accueil" class="hero" tabindex="-1" style="padding:2.5rem 1rem;position:relative;">
+      <!-- Remplacement du contenu: panneau image + texte -->
+           <h2>💡 À propos de moi</h2>
+  <div class="flip-card" id="about-flip" role="button" aria-pressed="false" tabindex="0" title="Tourner la page">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="about-panel">
+          <figure class="about-photo" aria-hidden="false">
+            <img src="photo1.jpeg" alt="Portrait de Shaiane Neves">
+          </figure>
+          <div class="about-text">
+            <p class="lead">Je suis Shaiane Neves, une exploratrice du e‑learning, passionnée par l’apprentissage en autonomie.</p>
+            <p>J’imagine des parcours de formation vivants, interactifs et inclusifs, où chaque apprenant devient acteur de son apprentissage.</p>
+            <p>Mon ambition : rendre le savoir accessible à tous, avec une touche de créativité et beaucoup de sens.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card-back" aria-hidden="true">
+        <img src="exp.png" alt="Expérience / illustration">
+      </div>
+    </div>
+  </div>
+    </section>
   <main class="contact-root">
   <div class="panel-card">
       <h2 id="contact" style="margin-top:8px">Contact</h2>
@@ -283,6 +274,24 @@
         window.location.href = mailto;
       });
     })();
+
+    // Flip-card interaction for About panel
+    (function(){
+      const flip = document.getElementById('about-flip');
+      if(!flip) return;
+      const inner = flip.querySelector('.flip-card-inner');
+      function toggleFlip(){
+        flip.classList.toggle('is-flipped');
+        // update aria-pressed
+        const pressed = flip.classList.contains('is-flipped');
+        flip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      }
+      // click and keyboard (Enter / Space)
+      flip.addEventListener('click', toggleFlip);
+      flip.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
+      });
+    })();
   </script>
   <footer>
   2025 – Shaiane Neves<br>
@@ -293,8 +302,12 @@
     // Highlight active nav link based on section in view
     (function(){
       const navLinks = document.querySelectorAll('nav.minimal-nav a[href^="#"]');
+      // Timestamp of last user click on nav - used to temporarily ignore observer updates
+      let lastUserNavTime = 0;
       const sections = Array.from(navLinks).map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
       const obs = new IntersectionObserver(entries => {
+        // If the user recently clicked a nav link, ignore observer updates briefly
+        if(Date.now() - lastUserNavTime < 800) return;
         entries.forEach(entry => {
           const id = entry.target.id;
           const link = document.querySelector('nav.minimal-nav a[href="#'+id+'"]');
@@ -305,6 +318,16 @@
         });
       }, { root: null, threshold: 0.45 });
       sections.forEach(s=>obs.observe(s));
+
+      // When the user clicks a nav link, mark the click time and set active immediately
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          lastUserNavTime = Date.now();
+          navLinks.forEach(l=>l.classList.remove('active'));
+          link.classList.add('active');
+          // allow default anchor behavior (scroll) to proceed
+        });
+      });
 
       // Déterminer quel onglet afficher initialement.
       // - Si l'URL contient un hash correspondant à une section/navigation, on le respecte.
