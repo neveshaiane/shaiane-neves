@@ -210,16 +210,13 @@
         </button>
       </div>
 
-      <!-- Images demandées: comp.png puis exp.png -->
+
          <div>
       <div class="about-images" style="max-width:980px;margin:20px auto;display:flex;flex-direction:column;gap:18px;align-items:center;">
         <img src="comp.png" alt="Compétences (comp.png)">
       </div> 
       </div>
-    <div>      
-    <div class="about-images" style="max-width:980px;margin:20px auto;display:flex;flex-direction:column;gap:18px;align-items:center;">
-        <img src="exp.png" alt="Expérience (exp.png)">
-      </div>
+
       </div>
     </section>
   <main class="contact-root">
@@ -379,7 +376,7 @@
             return;
           }
         }
-        // Default to Portfolio (#projets) when no hash is present
+      
         const projetsLink = document.querySelector('nav.minimal-nav a[href="#projets"]');
         if (projetsLink) {
           navLinks.forEach(l=>l.classList.remove('active'));
