@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – Shaiane da Silva Neves</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+  <!-- Sous-titre retiré -->
+    <nav class="minimal-nav" id="main-nav">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a> 
+      <!--<a href="contact.html">Contact</a>-->
+      <div style="margin-left:auto">
+        <a href="http://www.linkedin.com/in/shaiane-neves" target="_blank" rel="noopener">
+          <img src="lk.png" alt="LinkedIn" style="height:55px;width:60px;vertical-align:middle;border-radius:4px;">
+        </a>
+        <a href="#contact" rel="noopener">
+          <img src="mail.png" alt="LinkedIn" style="height:35px;width:40px;vertical-align:middle;border-radius:4px;">
+        </a>
+        
+      </div>
+    </nav>
+  </header>
+  <!-- Modal / Lightbox -->
+  <div id="gallery-modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Affichage du projet">
+      <div class="modal-body">
+        <button class="modal-close" aria-label="Fermer">✕</button>
+        <div class="modal-content-area"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Compétences section removed per user request -->
+    <section id="accueil" class="hero" tabindex="-1" style="padding:2.5rem 1rem;position:relative;">
+      <!-- À propos propre + images comp.png et exp.png insérées en dessous -->
+      <h2>💡 À propos de moi</h2>
+      <div class="about-panel">
+        <figure class="about-photo" aria-hidden="false">
+          <img src="photo1.jpg" alt="Portrait de Shaiane Neves">
+        </figure>
+        <div class="about-text">
+          <p class="lead">Je suis Shaiane Neves, une exploratrice du e‑learning, passionnée par l’apprentissage en autonomie.</p>
+          <p>J’imagine des parcours de formation vivants, interactifs et inclusifs, où chaque apprenant devient acteur de son apprentissage.</p>
+          <p>Mon ambition : rendre le savoir accessible à tous, avec une touche de créativité et beaucoup de sens.</p>
+        </div>
+        <button class="scroll-indicator" id="about-scroll" aria-label="Voir plus">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Images demandées: comp.png puis exp.png -->
+         <div>
+      <div class="about-images" style="max-width:980px;margin:20px auto;display:flex;flex-direction:column;gap:18px;align-items:center;">
+        <img src="comp.png" alt="Compétences (comp.png)">
+      </div> 
+      </div>
+    <div>      
+    <div class="about-images" style="max-width:980px;margin:20px auto;display:flex;flex-direction:column;gap:18px;align-items:center;">
+        <img src="exp.png" alt="Expérience (exp.png)">
+      </div>
+      </div>
+    </section>
+  <main class="contact-root">
+  <div class="panel-card">
+      <h2 id="contact" style="margin-top:8px">Contact</h2>
+      <p class="contact-sub">Envoyez-moi un message rapide — cela ouvrira votre client mail avec le message prêt à envoyer.</p>
+
+      <p class="note"></p>
+
+      <form id="contact-form" class="contact-form" novalidate>
+        <div>
+          <label for="name">Votre nom</label>
+          <input id="name" name="name" type="text" placeholder="Ex : Marie Dupont">
+        </div>
+
+        <div>
+          <label for="email">Votre email (facultatif)</label>
+          <input id="email" name="email" type="email" placeholder="exemple@domaine.com">
+        </div>
+
+        <div>
+          <label for="subject">Objet</label>
+          <input id="subject" name="subject" type="text" placeholder="Sujet du message">
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Écrivez votre message ici..."></textarea>
+        </div>
+
+        <div class="actions">
+          <button id="sendBtn" type="submit" class="primary">Envoyer</button>
+          <a href="mailto:shaiane-neves@hotmail.com" class="note" style="margin-left:auto">Ou envoyer directement par email</a>
+        </div>
+      </form>
+    </div>
+  </main>
+  <script>
+    (function(){
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const to = 'shaiane-neves@hotmail.com';
+        const name = (form.name.value || '').trim();
+        const email = (form.email.value || '').trim();
+        const subject = (form.subject.value || 'Message depuis le site').trim();
+        const message = (form.message.value || '').trim();
+        if(!message){
+          alert('Merci d\'écrire un message avant d\'envoyer.');
+          return;
+        }
+        let body = '';
+        if(name) body += 'Nom: ' + name + '\n\n';
+        if(email) body += 'Email: ' + email + '\n\n';
+        body += message;
+        const mailto = 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        // Ouvrir le client mail (nouvelle fenêtre/onglet selon navigateur)
+        window.location.href = mailto;
+      });
+    })();
+
+    // Flip-card interaction for About panel
+    (function(){
+      const flip = document.getElementById('about-flip');
+      if(!flip) return;
+      const inner = flip.querySelector('.flip-card-inner');
+      function toggleFlip(){
+        flip.classList.toggle('is-flipped');
+        // update aria-pressed
+        const pressed = flip.classList.contains('is-flipped');
+        flip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      }
+      // click and keyboard (Enter / Space)
+      flip.addEventListener('click', toggleFlip);
+      flip.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
+      });
+    })();
+
+    // Flip-card interaction for CV panel (comp.png front, exp.png back)
+    (function(){
+      const flip = document.getElementById('cv-flip');
+      if(!flip) return;
+      function toggleFlip(){
+        flip.classList.toggle('is-flipped');
+        const pressed = flip.classList.contains('is-flipped');
+        flip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      }
+      flip.addEventListener('click', toggleFlip);
+      flip.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
+      });
+    })();
+
+    // Scroll indicator behavior: scroll to first .about-images when clicked
+    (function(){
+      const btn = document.getElementById('about-scroll');
+      const target = document.querySelector('.about-images');
+      if(!btn || !target) return;
+      // animate a few times to attract attention
+      btn.classList.add('animate');
+      // stop animation after some time
+      setTimeout(()=> btn.classList.remove('animate'), 6000);
+      btn.addEventListener('click', ()=>{
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    })();
+  </script>
+  <footer>
+  2026 – Shaiane Neves<br>
+  Ingénieure pédagogique
+  </footer>
+
+  <script>
+    // Highlight active nav link based on section in view
+    (function(){
+      const navLinks = document.querySelectorAll('nav.minimal-nav a[href^="#"]');
+      // Timestamp of last user click on nav - used to temporarily ignore observer updates
+      let lastUserNavTime = 0;
+      const sections = Array.from(navLinks).map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      const obs = new IntersectionObserver(entries => {
+        // If the user recently clicked a nav link, ignore observer updates briefly
+        if(Date.now() - lastUserNavTime < 800) return;
+        entries.forEach(entry => {
+          const id = entry.target.id;
+          const link = document.querySelector('nav.minimal-nav a[href="#'+id+'"]');
+          if(entry.isIntersecting){
+            navLinks.forEach(l=>l.classList.remove('active'));
+            if(link) link.classList.add('active');
+          }
+        });
+      }, { root: null, threshold: 0.45 });
+      sections.forEach(s=>obs.observe(s));
+
+      // When the user clicks a nav link, mark the click time and set active immediately
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          lastUserNavTime = Date.now();
+          navLinks.forEach(l=>l.classList.remove('active'));
+          link.classList.add('active');
+          // allow default anchor behavior (scroll) to proceed
+        });
+      });
+
+      // Déterminer quel onglet afficher initialement.
+      // - Si l'URL contient un hash correspondant à une section/navigation, on le respecte.
+      // - Sinon on force "Accueil" actif.
+      // On réapplique aussi cette logique après le 'load' / RAF pour éviter
+      // que l'IntersectionObserver ne remplace l'état initial immédiatement.
+      function setInitialActive(){
+        const hash = window.location.hash;
+        if(hash){
+          const targetLink = document.querySelector('nav.minimal-nav a[href="'+hash+'"]');
+          if(targetLink){
+            navLinks.forEach(l=>l.classList.remove('active'));
+            targetLink.classList.add('active');
+            return;
+          }
+        }
+        // Default to Portfolio (#projets) when no hash is present
+        const projetsLink = document.querySelector('nav.minimal-nav a[href="#projets"]');
+        if (projetsLink) {
+          navLinks.forEach(l=>l.classList.remove('active'));
+          projetsLink.classList.add('active');
+          const projetsSection = document.querySelector('#projets');
+          if(projetsSection){ projetsSection.scrollIntoView(); }
+        }
+      }
+
+      // Appliquer immédiatement, puis ré-appliquer après chargement pour prendre le dessus
+      // si l'IntersectionObserver a modifié l'état.
+      setInitialActive();
+      window.addEventListener('load', ()=> requestAnimationFrame(setInitialActive));
+    })();
+
+    // Galerie : ouverture modal et injection du contenu
+    (function(){
+      const modal = document.getElementById('gallery-modal');
+      const modalArea = modal.querySelector('.modal-content-area');
+      const closeBtn = modal.querySelector('.modal-close');
+
+      // Appliquer les images de fond depuis data-thumb si présents et si aucun background inline n'existe
+      document.querySelectorAll('.gallery-item').forEach(item=>{
+        const thumbEl = item.querySelector('.gallery-thumb');
+        if(item.dataset.thumb && thumbEl && !thumbEl.style.backgroundImage){
+          thumbEl.style.backgroundImage = `url("${item.dataset.thumb}")`;
+        }
+      });
+
+      function openModal(type, src){
+        // vider l'ancien contenu
+        modalArea.innerHTML = '';
+        if(type === 'iframe'){
+          const iframe = document.createElement('iframe');
+          iframe.src = src;
+          iframe.allowFullscreen = true;
+          iframe.loading = 'lazy';
+          modalArea.appendChild(iframe);
+        } else if(type === 'video'){
+          const video = document.createElement('video');
+          video.src = src;
+          video.controls = true;
+          video.autoplay = true;
+          modalArea.appendChild(video);
+        }
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        modalArea.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      // click sur vignette
+      document.querySelectorAll('.gallery-item').forEach(item=>{
+        const thumb = item.querySelector('.gallery-thumb');
+        thumb.addEventListener('click', ()=> openModal(item.dataset.type, item.dataset.src));
+      });
+
+      
+      // click sur vignette
+      document.querySelectorAll('.gallery2').forEach(item=>{
+        const thumb = item.querySelector('.galleryto');
+        thumb.addEventListener('disable', ()=> openModal(item.dataset.type, item.dataset.src));
+      });
+
+      // fermer
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e)=>{
+        if(e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+    })();
+  </script>
+</body>
+</html>

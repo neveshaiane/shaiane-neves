@@ -1,0 +1,267 @@
+
+    /* smooth scroll for anchor navigation */
+    html { scroll-behavior: smooth; }
+    /* Galerie */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+    .gallery-item{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column}
+    /* Thumb: now supports background images */
+    .gallery-thumb{position:relative;height:200px;background:#e9f2fb;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .22s ease}
+    .gallery-thumb:hover{transform:scale(1.02)}
+  /* Disable hover and clicks for items marked .no-click */
+  .gallery-item.no-click .gallery-thumb{cursor:default;pointer-events:none;transform:none}
+  .gallery-item.no-click .gallery-thumb:hover{transform:none}
+
+  /* Réduire la taille des vignettes spécifiques (IA et Bechouia) */
+  .gallery-item[data-src$="video/apprentia.mp4"] .gallery-thumb,
+  .gallery-item[data-src$="video/bechouia.mp4"] .gallery-thumb {
+    height: 300px;
+    min-height: 120px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Responsive: taille réduite sur petits écrans */
+  @media (max-width: 800px) {
+    .gallery-item[data-src$="video/apprentia.mp4"] .gallery-thumb,
+    .gallery-item[data-src$="video/bechouia.mp4"] .gallery-thumb {
+      height: 220px;
+      min-height: 90px;
+    }
+  }
+    /* Make specific full-width image fill the viewport while keeping aspect ratio */
+    .full-screen-img{width:100%;height:100vh; object-fit:cover; display:block}
+    .gallery-thumb .play{font-size:34px;color:#fff;background:rgba(0,0,0,0.35);padding:10px;border-radius:50%}
+    .gallery-item h3{margin:.6em 0 .2em}
+    .gallery-item p{margin:0 0 .6em;color:#444}
+    /* Modal */
+    #gallery-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:1200;padding:24px}
+    #gallery-modal.open{display:flex}
+    .modal-card{max-width:1100px;width:100%;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(2,6,23,.4)}
+    .modal-body{position:relative;padding:0;background:#000}
+    .modal-body iframe,.modal-body video{width:100%;height:70vh;border:0;display:block}
+    .modal-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:0;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:18px;z-index:2}
+    @media (max-width:600px){.modal-body iframe,.modal-body video{height:55vh}}
+
+    .contact-root{max-width:980px;margin:48px auto;padding:24px}
+    .contact-card{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start;background:var(--color-bg,#f8f5f5);padding:20px;border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+    .contact-photo{width:200px;height:200px;object-fit:cover;border-radius:12px;display:block}
+    .contact-heading{margin:0 0 8px 0;font-size:1.4rem;color:var(--color-text-main)}
+    .contact-sub{margin:0 0 16px 0;color:var(--color-text-secondary)}
+    form.contact-form{display:flex;flex-direction:column;gap:12px}
+    label{font-size:0.95rem;color:var(--color-text-main)}
+    input[type=text],input[type=email],textarea{width:100%;padding:10px;border:1px solid rgba(15,23,36,0.08);border-radius:8px;font-size:0.95rem}
+    textarea{min-height:140px;resize:vertical}
+    .actions{display:flex;gap:12px;align-items:center}
+    button.primary{background:var(--color-accent,#0f6b4d);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
+    .note{font-size:0.9rem;color:var(--color-text-secondary)}
+    @media (max-width:720px){.contact-card{grid-template-columns:1fr;align-items:center}.contact-photo{margin:0 auto}}
+  /* Shared card styling for panels (À propos, Compétences, Contact) */
+  .panel-card{max-width:980px;margin:24px auto;padding:20px;background:var(--color-bg,#ffffff);border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+  .panel-card h2{margin-top:0}
+  /* muted variant (grey background) for panels that need the original contact look */
+  .panel-card--muted{background:var(--color-bg,#f8f5f5)}
+  /* about-panel uses its own layout (not forced to panel-card) */
+  /* Flip-card (page turn) styles for About panel */
+  .flip-card{max-width:980px;margin:24px auto;perspective:1200px}
+  .flip-card-inner{position:relative;width:100%;height:100%;transition:transform 0.9s cubic-bezier(.2,.9,.3,1);transform-style:preserve-3d}
+  .flip-card.is-flipped .flip-card-inner{transform:rotateY(180deg)}
+  .flip-card-front,.flip-card-back{position:relative;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden}
+  .flip-card-front{background:var(--color-bg,#ffffff);box-shadow:0 6px 22px rgba(12,20,30,0.06);padding:20px}
+  .flip-card-back{position:absolute;inset:0;transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;background:#111}
+  .flip-card-back img{width:100%;height:100%;object-fit:cover;display:block}
+  /* Make flip-card clickable (indicate affordance) */
+  .flip-card{cursor:pointer}
+  /* CV fixes: prevent frame/content from changing size */
+  #cv > .panel-card{background:transparent;box-shadow:none;padding:0}
+  #cv .flip-card{max-width:980px;margin:12px auto;width:100%;aspect-ratio:4/3;position:relative}
+  #cv .flip-card-inner{height:100%}
+  #cv .flip-card-front,#cv .flip-card-back{position:absolute;inset:0;border-radius:12px;overflow:hidden;background:none;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+  #cv .full-screen-img{width:100%;height:100%;object-fit:cover;display:block}
+/* Cleaned minimal stylesheet: keep essential layout and components only */
+
+:root{
+  --color-accent:#0f6b4d;
+  --color-secondary:#1fb07a;
+  --color-bg:#F4FAF7;
+  --color-text-main:#0f1724;
+  --color-text-secondary:#6B7280;
+  --color-success:#10B981;
+}
+
+/* Page basics */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;line-height:1.6;color:var(--color-text-main);background:var(--color-bg)}
+
+/* Layout containers */
+main,section{max-width:1100px;margin:0 auto;padding:72px 16px 48px}
+section{background:transparent}
+h2,h3{color:var(--color-accent);margin:.25rem 0 .75rem}
+
+/* Minimal navigation */
+.minimal-nav{position:fixed;inset:0 0 auto 0;height:56px;display:flex;align-items:center;gap:16px;padding:0 20px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);z-index:1000}
+.minimal-nav a{color:var(--color-text-main);text-decoration:none;padding:8px 10px;border-radius:6px;font-weight:600}
+.minimal-nav a.active{background:var(--color-accent);color:#fff}
+
+/* Cards / Panels */
+.panel-card{background:#fff;border-radius:12px;padding:18px;margin:20px auto;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
+.panel-card--muted{background:var(--color-bg)}
+
+/* Gallery grid (responsive) */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.gallery-item{background:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.gallery-thumb{position:relative;height:200px;background:#e9f2fb;border-radius:10px;overflow:hidden;background-size:cover;background-position:center;transition:transform .18s ease}
+.gallery-thumb:hover{transform:scale(1.02)}
+.gallery-item.no-click .gallery-thumb{pointer-events:none;cursor:default;transform:none}
+.gallery-thumb .play{position:absolute;inset:auto 12px 12px auto;font-size:28px;color:#fff;background:rgba(0,0,0,.35);padding:8px;border-radius:50%}
+
+/* Centered, limited-width thumbnails used for special content */
+.gallery-thumb.thumb-centered{width:min(80vw,620px);margin:0 auto;border-radius:12px}
+
+/* Modal (simple) */
+#gallery-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.6);z-index:1200;padding:20px}
+#gallery-modal.open{display:flex}
+.modal-card{max-width:1100px;width:100%;background:#000;border-radius:10px;overflow:hidden}
+.modal-body{background:#000;padding:0}
+.modal-body iframe,.modal-body video{width:100%;height:70vh;border:0;display:block}
+.modal-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:0;border-radius:6px;padding:6px;cursor:pointer}
+
+/* Contact / form basics */
+.contact-root{max-width:980px;margin:32px auto;padding:18px}
+.contact-card{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:start;background:var(--color-bg);padding:18px;border-radius:10px}
+.contact-photo{width:200px;height:200px;object-fit:cover;border-radius:10px;display:block}
+form.contact-form{display:flex;flex-direction:column;gap:10px}
+input,textarea{width:100%;padding:10px;border:1px solid rgba(15,23,36,.08);border-radius:8px}
+
+button{background:var(--color-accent);color:#fff;border:none;padding:.6em 1em;border-radius:8px;cursor:pointer}
+
+/* Flip-card (kept minimal) */
+.flip-card{max-width:980px;margin:24px auto;perspective:1000px}
+.flip-card-inner{transition:transform .6s;transform-style:preserve-3d}
+.flip-card-front,.flip-card-back{backface-visibility:hidden;border-radius:10px;overflow:hidden}
+.flip-card.is-flipped .flip-card-inner{transform:rotateY(180deg)}
+
+/* About panel */
+.about-panel{max-width:1200px;margin:36px auto;display:flex;gap:32px;align-items:center;padding:30px;background:var(--color-bg);border-radius:12px}
+.about-photo img{width:280px;height:380px;object-fit:cover;border-radius:6px}
+.about-text{flex:1;text-align:left}
+
+/* Utilities and responsiveness */
+.note{font-size:.9rem;color:var(--color-text-secondary)}
+@media (max-width:1000px){.about-photo img{width:240px;height:320px}}
+@media (max-width:800px){
+  .contact-card{grid-template-columns:1fr}
+  .gallery-thumb{height:140px}
+  main,section{padding-top:84px}
+  .about-panel{flex-direction:column;text-align:center}
+}
+
+@media (max-width:480px){
+  .gallery-thumb{height:120px}
+  .about-photo img{width:min(68vw,320px);height:auto}
+}
+
+/* End of cleaned stylesheet */
+
+.about-text .lead {
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  margin: 0 0 20px 0;
+  line-height: 1.6;
+  font-weight: 600;
+}
+.about-text p {
+  margin: 0 0 18px 0;
+  font-size: clamp(0.98rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-text-main);
+}
+
+/* On aligne la grille visuellement si le conteneur plus étroit */
+@media (max-width: 1000px) {
+  .about-panel {
+    gap: 32px;
+    padding: 28px;
+  }
+  .about-photo img {
+    width: 280px;
+    height: 380px;
+  }
+}
+
+/* Mobile: empile verticalement */
+@media (max-width: 720px) {
+  .about-panel {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+  .about-photo img {
+    width: min(68vw, 360px);
+    height: auto;
+    max-height: 60vh;
+  }
+  .about-text { padding-top: 12px; }
+}
+
+/* Make the inserted comp/exp images use the same framed size as the about-photo */
+.about-images{
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  background: var(--color-bg, #F4FAF7);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.06);
+}
+
+.about-images img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: none;
+  border: none;
+}
+
+@media (max-width:1000px) {
+  .about-images{ padding: 28px; }
+}
+
+@media (max-width:720px) {
+  .about-images{ padding: 20px; }
+  .about-images img{ width: min(68vw, 360px); height: auto; max-height: 60vh; }
+}
+
+/* Stabiliser la taille des .about-images : hauteur fixe sur desktop, responsive sur mobile */
+.about-images{
+  width:100%;
+  max-width:980px;
+  margin:20px auto;
+  padding:20px;
+  height:420px; /* taille stable sur desktop */
+  overflow:hidden;
+  border-radius:12px;
+  background: var(--color-bg, #F4FAF7);
+  display:block;
+}
+.about-images img{
+  width:100%;
+  height:100%;
+  object-fit:cover; /* conserve le cadrage sans déformer */
+  display:block;
+}
+
+/* Sur petits écrans : hauteur auto pour que le texte et l'image s'empilent proprement */
+@media (max-width:720px) {
+  .about-images{
+    padding:16px;
+    height:auto;
+  }
+  .about-images img{
+    width:100%;
+    height:auto;
+  }
+}
