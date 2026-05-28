@@ -6,93 +6,29 @@
   <title>Portfolio – Shaiane Neves</title>
   <link rel="stylesheet" href="style.css">
   <!-- Ajout : styles pour la galerie et le modal -->
-  <style>
-    /* smooth scroll for anchor navigation */
-    html { scroll-behavior: smooth; }
-    /* Galerie */
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-    .gallery-item{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);display:flex;flex-direction:column}
-    /* Thumb: now supports background images */
-    .gallery-thumb{position:relative;height:200px;background:#e9f2fb;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .22s ease}
-    .gallery-thumb:hover{transform:scale(1.02)}
-  /* Disable hover and clicks for items marked .no-click */
-  .gallery-item.no-click .gallery-thumb{cursor:default;pointer-events:none;transform:none}
-  .gallery-item.no-click .gallery-thumb:hover{transform:none}
-    /* Make specific full-width image fill the viewport while keeping aspect ratio */
-    .full-screen-img{width:100%;height:100vh; object-fit:cover; display:block}
-    .gallery-thumb .play{font-size:34px;color:#fff;background:rgba(0,0,0,0.35);padding:10px;border-radius:50%}
-    .gallery-item h3{margin:.6em 0 .2em}
-    .gallery-item p{margin:0 0 .6em;color:#444}
-    /* Modal */
-    #gallery-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:1200;padding:24px}
-    #gallery-modal.open{display:flex}
-    .modal-card{max-width:1100px;width:100%;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(2,6,23,.4)}
-    .modal-body{position:relative;padding:0;background:#000}
-    .modal-body iframe,.modal-body video{width:100%;height:70vh;border:0;display:block}
-    .modal-close{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:0;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:18px;z-index:2}
-    @media (max-width:600px){.modal-body iframe,.modal-body video{height:55vh}}
-  </style>
-
-  <!-- Ajout : styles locaux légers pour la page contact (déplacés ici pour éviter second <head>) -->
-  <style>
-    .contact-root{max-width:980px;margin:48px auto;padding:24px}
-    .contact-card{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start;background:var(--color-bg,#f8f5f5);padding:20px;border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
-    .contact-photo{width:200px;height:200px;object-fit:cover;border-radius:12px;display:block}
-    .contact-heading{margin:0 0 8px 0;font-size:1.4rem;color:var(--color-text-main)}
-    .contact-sub{margin:0 0 16px 0;color:var(--color-text-secondary)}
-    form.contact-form{display:flex;flex-direction:column;gap:12px}
-    label{font-size:0.95rem;color:var(--color-text-main)}
-    input[type=text],input[type=email],textarea{width:100%;padding:10px;border:1px solid rgba(15,23,36,0.08);border-radius:8px;font-size:0.95rem}
-    textarea{min-height:140px;resize:vertical}
-    .actions{display:flex;gap:12px;align-items:center}
-    button.primary{background:var(--color-accent,#0f6b4d);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer}
-    .note{font-size:0.9rem;color:var(--color-text-secondary)}
-    @media (max-width:720px){.contact-card{grid-template-columns:1fr;align-items:center}.contact-photo{margin:0 auto}}
-  /* Shared card styling for panels (À propos, Compétences, Contact) */
-  .panel-card{max-width:980px;margin:24px auto;padding:20px;background:var(--color-bg,#ffffff);border-radius:12px;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
-  .panel-card h2{margin-top:0}
-  /* muted variant (grey background) for panels that need the original contact look */
-  .panel-card--muted{background:var(--color-bg,#f8f5f5)}
-  /* about-panel uses its own layout (not forced to panel-card) */
-  /* Flip-card (page turn) styles for About panel */
-  .flip-card{max-width:980px;margin:24px auto;perspective:1200px}
-  .flip-card-inner{position:relative;width:100%;height:100%;transition:transform 0.9s cubic-bezier(.2,.9,.3,1);transform-style:preserve-3d}
-  .flip-card.is-flipped .flip-card-inner{transform:rotateY(180deg)}
-  .flip-card-front,.flip-card-back{position:relative;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden}
-  .flip-card-front{background:var(--color-bg,#ffffff);box-shadow:0 6px 22px rgba(12,20,30,0.06);padding:20px}
-  .flip-card-back{position:absolute;inset:0;transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;background:#111}
-  .flip-card-back img{width:100%;height:100%;object-fit:cover;display:block}
-  /* Make flip-card clickable (indicate affordance) */
-  .flip-card{cursor:pointer}
-  /* CV fixes: prevent frame/content from changing size */
-  #cv > .panel-card{background:transparent;box-shadow:none;padding:0}
-  #cv .flip-card{max-width:980px;margin:12px auto;width:100%;aspect-ratio:4/3;position:relative}
-  #cv .flip-card-inner{height:100%}
-  #cv .flip-card-front,#cv .flip-card-back{position:absolute;inset:0;border-radius:12px;overflow:hidden;background:none;box-shadow:0 6px 22px rgba(12,20,30,0.06)}
-  #cv .full-screen-img{width:100%;height:100%;object-fit:cover;display:block}
-  #cv .flip-card-front .content,#cv .flip-card-back .content{height:100%;overflow:auto;padding:18px;box-sizing:border-box}
-  </style>
 </head>
 <body>
   <header>
 
     <nav class="minimal-nav" id="main-nav">
-      <a href="#projets">Portfolio</a>
-      <a href="#portfolio">À propos</a>
+      <a href="#projects">Portfolio</a>
+      <a href="about.html">À propos</a>
 
-      <!--<a href="contact.html">Contact</a>-->
       <div style="margin-left:auto">
-        <a href="http://www.linkedin.com/in/shaiane-neves" target="_blank" rel="noopener">
+        
+        <a href="http://www.linkedin.com/in/shaiane-neves" target="_blank" rel="noopener" aria-label="Profil LinkedIn de Shaiane Neves (s'ouvre dans un nouvel onglet)">
           <img src="lk.png" alt="LinkedIn" style="height:55px;width:60px;vertical-align:middle;border-radius:4px;">
         </a>
-        <a href="#contact" rel="noopener">
-          <img src="mail.png" alt="LinkedIn" style="height:35px;width:40px;vertical-align:middle;border-radius:4px;">
-        </a>
+        
+        <div class="tooltip-container" data-tooltip="Envoyer un e-mail à Shaiane Neves">
+          <a href="mailto:shaiane-neves@hotmail.com" aria-label="Envoyer un e-mail à Shaiane Neves">
+            <img src="mail.png" alt="Contact par e-mail" style="height:35px;width:40px;vertical-align:middle;border-radius:4px;">
+          </a>
         
       </div>
     </nav>
   </header>
-  <section id="projets" class="projets">
+  <section id="projects" class="projects">
     <h2>Derniers projets</h2>
     <p> Conception et production de modules e‑learning et micro-learning.
  </p>
@@ -192,153 +128,24 @@
     </div>
   </div>
 
-
-    <section id="portfolio" class="hero" tabindex="-1" style="padding:2.5rem 1rem;position:relative;">
-      <h2>Shaiane Neves</h2>
-      <h4>Ingénieure pédagogique</h4>
-      <div class="about-panel">
-
-        <div class="about-text">
-          <p>Ingénieure pédagogique orientée vers la transformation digitale et l'hybridation des parcours.</p>
-          <p>Ma mission ? Créer des ponts entre pédagogie et technologie. J’aide les formateurs à s'approprier les nouveaux outils numériques — de l'IA au LMS — pour concevoir des parcours hybrides qui engagent réellement l'apprenant.</p>
-          <p>Convaincue que l'humain reste au cœur du digital, je mets mes compétences en animation de communauté et en conseil au service d'une montée en compétences partagée.</p>
-        </div>
-        <button class="scroll-indicator" id="about-scroll" aria-label="Voir plus">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-
-
-         <div>
-      <div class="about-images" style="max-width:980px;margin:20px auto;display:flex;flex-direction:column;gap:18px;align-items:center;">
-        <img src="comp.png" alt="Compétences (comp.png)">
-      </div> 
-      </div>
-
-      </div>
-    </section>
-  <main class="contact-root">
-  <div class="panel-card">
-      <h2 id="contact" style="margin-top:8px">Contact</h2>
-      <p class="contact-sub">Envoyez-moi un message rapide — cela ouvrira votre client mail avec le message prêt à envoyer.</p>
-
-      <p class="note"></p>
-
-      <form id="contact-form" class="contact-form" novalidate>
-        <div>
-          <label for="name">Votre nom</label>
-          <input id="name" name="name" type="text" placeholder="Ex : Marie Dupont">
-        </div>
-
-        <div>
-          <label for="email">Votre email (facultatif)</label>
-          <input id="email" name="email" type="email" placeholder="exemple@domaine.com">
-        </div>
-
-        <div>
-          <label for="subject">Objet</label>
-          <input id="subject" name="subject" type="text" placeholder="Sujet du message">
-        </div>
-
-        <div>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Écrivez votre message ici..."></textarea>
-        </div>
-
-        <div class="actions">
-          <button id="sendBtn" type="submit" class="primary">Envoyer</button>
-          <a href="mailto:shaiane-neves@hotmail.com" class="note" style="margin-left:auto">Ou envoyer directement par email</a>
-        </div>
-      </form>
-    </div>
-  </main>
-  <script>
-    (function(){
-      const form = document.getElementById('contact-form');
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const to = 'shaiane-neves@hotmail.com';
-        const name = (form.name.value || '').trim();
-        const email = (form.email.value || '').trim();
-        const subject = (form.subject.value || 'Message depuis le site').trim();
-        const message = (form.message.value || '').trim();
-        if(!message){
-          alert('Merci d\'écrire un message avant d\'envoyer.');
-          return;
-        }
-        let body = '';
-        if(name) body += 'Nom: ' + name + '\n\n';
-        if(email) body += 'Email: ' + email + '\n\n';
-        body += message;
-        const mailto = 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        // Ouvrir le client mail (nouvelle fenêtre/onglet selon navigateur)
-        window.location.href = mailto;
-      });
-    })();
-
-    // Flip-card interaction for About panel
-    (function(){
-      const flip = document.getElementById('about-flip');
-      if(!flip) return;
-      const inner = flip.querySelector('.flip-card-inner');
-      function toggleFlip(){
-        flip.classList.toggle('is-flipped');
-        // update aria-pressed
-        const pressed = flip.classList.contains('is-flipped');
-        flip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-      }
-      // click and keyboard (Enter / Space)
-      flip.addEventListener('click', toggleFlip);
-      flip.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
-      });
-    })();
-
-    // Flip-card interaction for CV panel (comp.png front, exp.png back)
-    (function(){
-      const flip = document.getElementById('cv-flip');
-      if(!flip) return;
-      function toggleFlip(){
-        flip.classList.toggle('is-flipped');
-        const pressed = flip.classList.contains('is-flipped');
-        flip.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-      }
-      flip.addEventListener('click', toggleFlip);
-      flip.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
-      });
-    })();
-
-    // Scroll indicator behavior: scroll to first .about-images when clicked
-    (function(){
-      const btn = document.getElementById('about-scroll');
-      const target = document.querySelector('.about-images');
-      if(!btn || !target) return;
-      // animate a few times to attract attention
-      btn.classList.add('animate');
-      // stop animation after some time
-      setTimeout(()=> btn.classList.remove('animate'), 6000);
-      btn.addEventListener('click', ()=>{
-        target.scrollIntoView({behavior:'smooth', block:'start'});
-      });
-    })();
-  </script>
-  <footer>
-  2026 – Shaiane Neves<br>
-  Ingénieure pédagogique
+   <footer>
+    <p>
+      2026 – Shaiane Neves<br>
+      Ingénieure pédagogique<br>
+      Contact : <a style="color: inherit;">+33 07 44 41 91 39</a>  |  <a href="mailto:shaiane-neves@hotmail.com" style="color: inherit;">shaiane-neves@hotmail.com</a>
+    </p>
   </footer>
 
+  </script>
   <script>
-    // Highlight active nav link based on section in view
+
     (function(){
       const navLinks = document.querySelectorAll('nav.minimal-nav a[href^="#"]');
-      // Timestamp of last user click on nav - used to temporarily ignore observer updates
+
       let lastUserNavTime = 0;
       const sections = Array.from(navLinks).map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
       const obs = new IntersectionObserver(entries => {
-        // If the user recently clicked a nav link, ignore observer updates briefly
+
         if(Date.now() - lastUserNavTime < 800) return;
         entries.forEach(entry => {
           const id = entry.target.id;
@@ -351,21 +158,17 @@
       }, { root: null, threshold: 0.45 });
       sections.forEach(s=>obs.observe(s));
 
-      // When the user clicks a nav link, mark the click time and set active immediately
+
       navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
           lastUserNavTime = Date.now();
           navLinks.forEach(l=>l.classList.remove('active'));
           link.classList.add('active');
-          // allow default anchor behavior (scroll) to proceed
+
         });
       });
 
-      // Déterminer quel onglet afficher initialement.
-      // - Si l'URL contient un hash correspondant à une section/navigation, on le respecte.
-      // - Sinon on force "Accueil" actif.
-      // On réapplique aussi cette logique après le 'load' / RAF pour éviter
-      // que l'IntersectionObserver ne remplace l'état initial immédiatement.
+ 
       function setInitialActive(){
         const hash = window.location.hash;
         if(hash){
@@ -386,19 +189,17 @@
         }
       }
 
-      // Appliquer immédiatement, puis ré-appliquer après chargement pour prendre le dessus
-      // si l'IntersectionObserver a modifié l'état.
       setInitialActive();
       window.addEventListener('load', ()=> requestAnimationFrame(setInitialActive));
     })();
 
-    // Galerie : ouverture modal et injection du contenu
+
     (function(){
       const modal = document.getElementById('gallery-modal');
       const modalArea = modal.querySelector('.modal-content-area');
       const closeBtn = modal.querySelector('.modal-close');
 
-      // Appliquer les images de fond depuis data-thumb si présents et si aucun background inline n'existe
+  
       document.querySelectorAll('.gallery-item').forEach(item=>{
         const thumbEl = item.querySelector('.gallery-thumb');
         if(item.dataset.thumb && thumbEl && !thumbEl.style.backgroundImage){
@@ -407,7 +208,7 @@
       });
 
       function openModal(type, src){
-        // vider l'ancien contenu
+
         modalArea.innerHTML = '';
         if(type === 'iframe'){
           const iframe = document.createElement('iframe');
@@ -434,20 +235,17 @@
         document.body.style.overflow = '';
       }
 
-      // click sur vignette
       document.querySelectorAll('.gallery-item').forEach(item=>{
         const thumb = item.querySelector('.gallery-thumb');
         thumb.addEventListener('click', ()=> openModal(item.dataset.type, item.dataset.src));
       });
 
       
-      // click sur vignette
       document.querySelectorAll('.gallery2').forEach(item=>{
         const thumb = item.querySelector('.galleryto');
         thumb.addEventListener('disable', ()=> openModal(item.dataset.type, item.dataset.src));
       });
 
-      // fermer
       closeBtn.addEventListener('click', closeModal);
       modal.addEventListener('click', (e)=>{
         if(e.target === modal) closeModal();
