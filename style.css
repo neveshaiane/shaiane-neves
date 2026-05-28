@@ -527,7 +527,7 @@ section { padding: 48px 24px; }
 
   /* 1. SECTION PRÉSENTATION : On la laisse à sa taille d'origine (Généreuse et spacieuse) */
 .about-panel {
-  max-width: 1200px; /* Taille d'origine conservée */
+  max-width: 980px; /* Taille d'origine conservée */
   margin: 20px auto;  
   display: flex;
   align-items: center;
@@ -541,7 +541,7 @@ section { padding: 48px 24px; }
 
 /* 2. SECTION COMPÉTENCES : S'élargit pour faire EXACTEMENT la même taille que la présentation */
 .panel-card {
-  max-width: 1200px; /* Modifié de 980px à 1200px pour s'aligner sur la section 1 */
+  max-width: 980px; /* Modifié de 980px à 1200px pour s'aligner sur la section 1 */
   margin: 20px auto;  
   padding: 40px;      /* Même espacement interne pour une harmonie parfaite */
   background: var(--color-bg, #F4FAF7);
